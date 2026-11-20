@@ -1,0 +1,8 @@
+{
+  "firestore": {
+    "databaseId": "ai-studio-lumilibras-ced03eec-fdaa-48cd-a920-15f8ba7b7732",
+    "rules": "firestore.rules",
+    "edition": "ENTERPRISE",
+    "dataAccessMode": "FIRESTORE_NATIVE"
+  }
+}
