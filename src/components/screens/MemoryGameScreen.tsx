@@ -165,7 +165,7 @@ export const MemoryGameScreen: React.FC<MemoryGameScreenProps> = ({
             <span className="text-2xl font-black text-slate-400">+</span>
             <div className="w-20 h-28 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 flex items-center justify-center p-2 shadow-sm">
               <img
-                src="/assets/signs/A.png"
+                src="./assets/signs/A.png"
                 alt="Sinal da letra A"
                 className="w-full h-full object-contain filter dark:invert"
               />
@@ -258,9 +258,9 @@ export const MemoryGameScreen: React.FC<MemoryGameScreenProps> = ({
                     >
                       <div className="w-10 h-10 sm:w-16 sm:h-16 flex items-center justify-center">
                         <img
-                          src="/assets/logo_recovered.png"
+                          src="./assets/logo_recovered.png"
                           onError={(e) => {
-                            (e.currentTarget as HTMLImageElement).src = '/assets/logo_stitch.png';
+                            (e.currentTarget as HTMLImageElement).src = './assets/logo_stitch.png';
                           }}
                           alt="Lumi Libras Logo"
                           className="w-full h-full object-contain pointer-events-none select-none drop-shadow-xs"

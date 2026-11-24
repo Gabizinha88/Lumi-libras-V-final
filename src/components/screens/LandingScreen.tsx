@@ -26,7 +26,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
             {/* Playful waving hand badge */}
             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl flex items-center justify-center transform group-hover:scale-105 transition-transform overflow-hidden shadow-2xs">
               <img
-                src="/assets/logo_stitch.png"
+                src="./assets/logo_stitch.png"
                 onError={(e) => {
                   (e.currentTarget as HTMLImageElement).src =
                     'https://lh3.googleusercontent.com/aida-public/AB6AXuBW9N146_koeeKHAoTrsuhr2gb5lxr_2jLTF2q96K-l87-NHXh_QkFuHjLP7gDu2n8-cARGADgseE6myD9_Mz2TLiaZS1y7PwEA40289iy9k9CstyIHqZUBF5V2-aywlWkT3_IMC7Ppi_UzoXqgM4zyzdNSkj1VPruFClDXV-wZVVmNov4TfpxBVyeodhVkD-e_KJ_o6b0NWUQurU0I6FkpMJDammbpYGMpTwUzOreLYZtdZ6kS7blSM4PC957vbkod-zY';
@@ -140,7 +140,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                   <img
                     alt="Lumi, o monstrinho azul turquesa sorridente e peludo abraçando uma estrela amarela"
                     className="w-full max-w-[390px] h-auto object-contain drop-shadow-2xl select-none pointer-events-none"
-                    src="/assets/mascot_stitch.png"
+                    src="./assets/mascot_stitch.png"
                     onError={(e) => {
                       (e.currentTarget as HTMLImageElement).src =
                         'https://lh3.googleusercontent.com/aida-public/AB6AXuDKPdbTWvdNwK1kZbi5HXTYbzW9c1YrSa9wzFMSE7ttwaK_VP5d1p8AfX9QZzktVTfpQMfRMV0OVtclqvh1H5XnyemVVQ0FoLNBUN31A9dVkTThTdT-s3dk1z-OLCODPAk8jy9uNIQw-beVrCdU7mgY-y0gVFD3RRp5CfbIn9TgX68f4FlQzzK2m9t-GUCFSKKvLfhIxyuhxMAidq060LAMNRLmSIcXLw77FjzazeCzTUTb67BpdOH9OdR9MHRagjPucIc';

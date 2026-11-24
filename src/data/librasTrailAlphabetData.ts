@@ -10,11 +10,11 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
     rewardStars: 15,
     rewardXp: 30,
     letters: [
-      { letter: 'A', name: 'Letra A', signImagePath: '/assets/signs/A.png', tip: 'Mão fechada em punho com o polegar encostado na lateral.' },
-      { letter: 'E', name: 'Letra E', signImagePath: '/assets/signs/E.png', tip: 'Dedos dobrados para dentro apoiados sobre a ponta do polegar.' },
-      { letter: 'I', name: 'Letra I', signImagePath: '/assets/signs/I.png', tip: 'Mão fechada com apenas o dedo mindinho apontado para cima.' },
-      { letter: 'O', name: 'Letra O', signImagePath: '/assets/signs/O.png', tip: 'Todos os dedos se curvam formando um círculo perfeito.' },
-      { letter: 'U', name: 'Letra U', signImagePath: '/assets/signs/U.png', tip: 'Indicador e médio juntos apontados para o alto.' }
+      { letter: 'A', name: 'Letra A', signImagePath: './assets/signs/A.png', tip: 'Mão fechada em punho com o polegar encostado na lateral.' },
+      { letter: 'E', name: 'Letra E', signImagePath: './assets/signs/E.png', tip: 'Dedos dobrados para dentro apoiados sobre a ponta do polegar.' },
+      { letter: 'I', name: 'Letra I', signImagePath: './assets/signs/I.png', tip: 'Mão fechada com apenas o dedo mindinho apontado para cima.' },
+      { letter: 'O', name: 'Letra O', signImagePath: './assets/signs/O.png', tip: 'Todos os dedos se curvam formando um círculo perfeito.' },
+      { letter: 'U', name: 'Letra U', signImagePath: './assets/signs/U.png', tip: 'Indicador e médio juntos apontados para o alto.' }
     ],
     questions: [
       {
@@ -22,9 +22,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'E',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/M.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/E.png', isCorrect: true },
-          { id: 'opt_3', signImagePath: '/assets/signs/K.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/M.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/E.png', isCorrect: true },
+          { id: 'opt_3', signImagePath: './assets/signs/K.png', isCorrect: false }
         ],
         hint: 'Observe os quatro dedos dobrados encostando suavemente no polegar.'
       },
@@ -33,9 +33,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'A',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/A.png', isCorrect: true },
-          { id: 'opt_2', signImagePath: '/assets/signs/S.png', isCorrect: false },
-          { id: 'opt_3', signImagePath: '/assets/signs/O.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/A.png', isCorrect: true },
+          { id: 'opt_2', signImagePath: './assets/signs/S.png', isCorrect: false },
+          { id: 'opt_3', signImagePath: './assets/signs/O.png', isCorrect: false }
         ],
         hint: 'No A, o polegar fica aberto ao lado do punho fechado.'
       },
@@ -44,9 +44,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'I',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/D.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/L.png', isCorrect: false },
-          { id: 'opt_3', signImagePath: '/assets/signs/I.png', isCorrect: true }
+          { id: 'opt_1', signImagePath: './assets/signs/D.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/L.png', isCorrect: false },
+          { id: 'opt_3', signImagePath: './assets/signs/I.png', isCorrect: true }
         ],
         hint: 'Apenas o dedinho mindinho fica esticado para cima!'
       },
@@ -55,9 +55,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'O',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/O.png', isCorrect: true },
-          { id: 'opt_2', signImagePath: '/assets/signs/C.png', isCorrect: false },
-          { id: 'opt_3', signImagePath: '/assets/signs/E.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/O.png', isCorrect: true },
+          { id: 'opt_2', signImagePath: './assets/signs/C.png', isCorrect: false },
+          { id: 'opt_3', signImagePath: './assets/signs/E.png', isCorrect: false }
         ],
         hint: 'A mão faz o formato redondo de um círculo fechado.'
       },
@@ -66,9 +66,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'U',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/V.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/U.png', isCorrect: true },
-          { id: 'opt_3', signImagePath: '/assets/signs/W.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/V.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/U.png', isCorrect: true },
+          { id: 'opt_3', signImagePath: './assets/signs/W.png', isCorrect: false }
         ],
         hint: 'Dois dedos unidos para cima, como se fossem perninhas grudadas.'
       }
@@ -83,10 +83,10 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
     rewardStars: 15,
     rewardXp: 35,
     letters: [
-      { letter: 'B', name: 'Letra B', signImagePath: '/assets/signs/B.png', tip: 'Quatro dedos juntos para cima com o polegar dobrado na palma.' },
-      { letter: 'C', name: 'Letra C', signImagePath: '/assets/signs/C.png', tip: 'Mão curvada imitando o próprio desenho da letra C.' },
-      { letter: 'D', name: 'Letra D', signImagePath: '/assets/signs/D.png', tip: 'Apenas o indicador para cima e os outros formando uma bolinha com o polegar.' },
-      { letter: 'L', name: 'Letra L', signImagePath: '/assets/signs/L.png', tip: 'Polegar e indicador abertos formando o formato exato da letra L.' }
+      { letter: 'B', name: 'Letra B', signImagePath: './assets/signs/B.png', tip: 'Quatro dedos juntos para cima com o polegar dobrado na palma.' },
+      { letter: 'C', name: 'Letra C', signImagePath: './assets/signs/C.png', tip: 'Mão curvada imitando o próprio desenho da letra C.' },
+      { letter: 'D', name: 'Letra D', signImagePath: './assets/signs/D.png', tip: 'Apenas o indicador para cima e os outros formando uma bolinha com o polegar.' },
+      { letter: 'L', name: 'Letra L', signImagePath: './assets/signs/L.png', tip: 'Polegar e indicador abertos formando o formato exato da letra L.' }
     ],
     questions: [
       {
@@ -94,9 +94,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'L',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/L.png', isCorrect: true },
-          { id: 'opt_2', signImagePath: '/assets/signs/D.png', isCorrect: false },
-          { id: 'opt_3', signImagePath: '/assets/signs/G.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/L.png', isCorrect: true },
+          { id: 'opt_2', signImagePath: './assets/signs/D.png', isCorrect: false },
+          { id: 'opt_3', signImagePath: './assets/signs/G.png', isCorrect: false }
         ],
         hint: 'Forma um ângulo reto com o polegar e o indicador!'
       },
@@ -105,9 +105,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'C',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/O.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/C.png', isCorrect: true },
-          { id: 'opt_3', signImagePath: '/assets/signs/E.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/O.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/C.png', isCorrect: true },
+          { id: 'opt_3', signImagePath: './assets/signs/E.png', isCorrect: false }
         ],
         hint: 'A mão fica aberta lateralmente parecendo a letra C.'
       },
@@ -116,9 +116,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'B',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/B.png', isCorrect: true },
-          { id: 'opt_2', signImagePath: '/assets/signs/F.png', isCorrect: false },
-          { id: 'opt_3', signImagePath: '/assets/signs/U.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/B.png', isCorrect: true },
+          { id: 'opt_2', signImagePath: './assets/signs/F.png', isCorrect: false },
+          { id: 'opt_3', signImagePath: './assets/signs/U.png', isCorrect: false }
         ],
         hint: 'Palma aberta com 4 dedos juntos e o polegar dobrado na frente.'
       },
@@ -127,9 +127,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'D',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/I.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/D.png', isCorrect: true },
-          { id: 'opt_3', signImagePath: '/assets/signs/L.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/I.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/D.png', isCorrect: true },
+          { id: 'opt_3', signImagePath: './assets/signs/L.png', isCorrect: false }
         ],
         hint: 'Apenas o dedo indicador apontando para cima.'
       }
@@ -144,10 +144,10 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
     rewardStars: 20,
     rewardXp: 40,
     letters: [
-      { letter: 'F', name: 'Letra F', signImagePath: '/assets/signs/F.png', tip: 'Indicador dobrado e polegar apoiado POR FORA (F = polegar Fora).' },
-      { letter: 'G', name: 'Letra G', signImagePath: '/assets/signs/G.png', tip: 'Indicador apontando para cima e polegar encostado nele na base.' },
-      { letter: 'P', name: 'Letra P', signImagePath: '/assets/signs/P.png', tip: 'Formato de K deitado com dedo indicador horizontal e médio para baixo.' },
-      { letter: 'V', name: 'Letra V', signImagePath: '/assets/signs/V.png', tip: 'O clássico sinal de vitória com indicador e médio abertos.' }
+      { letter: 'F', name: 'Letra F', signImagePath: './assets/signs/F.png', tip: 'Indicador dobrado e polegar apoiado POR FORA (F = polegar Fora).' },
+      { letter: 'G', name: 'Letra G', signImagePath: './assets/signs/G.png', tip: 'Indicador apontando para cima e polegar encostado nele na base.' },
+      { letter: 'P', name: 'Letra P', signImagePath: './assets/signs/P.png', tip: 'Formato de K deitado com dedo indicador horizontal e médio para baixo.' },
+      { letter: 'V', name: 'Letra V', signImagePath: './assets/signs/V.png', tip: 'O clássico sinal de vitória com indicador e médio abertos.' }
     ],
     questions: [
       {
@@ -155,9 +155,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'V',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/U.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/V.png', isCorrect: true },
-          { id: 'opt_3', signImagePath: '/assets/signs/W.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/U.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/V.png', isCorrect: true },
+          { id: 'opt_3', signImagePath: './assets/signs/W.png', isCorrect: false }
         ],
         hint: 'Dedo indicador e médio abertos em V!'
       },
@@ -166,9 +166,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'F',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/T.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/F.png', isCorrect: true },
-          { id: 'opt_3', signImagePath: '/assets/signs/B.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/T.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/F.png', isCorrect: true },
+          { id: 'opt_3', signImagePath: './assets/signs/B.png', isCorrect: false }
         ],
         hint: 'Lembre-se do truque: no F o polegar fica de Fora!'
       },
@@ -177,9 +177,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'G',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/G.png', isCorrect: true },
-          { id: 'opt_2', signImagePath: '/assets/signs/D.png', isCorrect: false },
-          { id: 'opt_3', signImagePath: '/assets/signs/L.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/G.png', isCorrect: true },
+          { id: 'opt_2', signImagePath: './assets/signs/D.png', isCorrect: false },
+          { id: 'opt_3', signImagePath: './assets/signs/L.png', isCorrect: false }
         ],
         hint: 'O polegar encosta ao lado do indicador apontado para cima.'
       },
@@ -188,9 +188,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'P',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/K.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/P.png', isCorrect: true },
-          { id: 'opt_3', signImagePath: '/assets/signs/H.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/K.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/P.png', isCorrect: true },
+          { id: 'opt_3', signImagePath: './assets/signs/H.png', isCorrect: false }
         ],
         hint: 'Mão na horizontal apontando para o lado e dedo médio para baixo.'
       }
@@ -205,9 +205,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
     rewardStars: 20,
     rewardXp: 40,
     letters: [
-      { letter: 'M', name: 'Letra M', signImagePath: '/assets/signs/M.png', tip: 'Três dedos apontados para baixo (como as três perninhas do M).' },
-      { letter: 'N', name: 'Letra N', signImagePath: '/assets/signs/N.png', tip: 'Dois dedos apontados para baixo (as duas perninhas do N).' },
-      { letter: 'W', name: 'Letra W', signImagePath: '/assets/signs/W.png', tip: 'Três dedos esticados para cima (indicador, médio e anelar).' }
+      { letter: 'M', name: 'Letra M', signImagePath: './assets/signs/M.png', tip: 'Três dedos apontados para baixo (como as três perninhas do M).' },
+      { letter: 'N', name: 'Letra N', signImagePath: './assets/signs/N.png', tip: 'Dois dedos apontados para baixo (as duas perninhas do N).' },
+      { letter: 'W', name: 'Letra W', signImagePath: './assets/signs/W.png', tip: 'Três dedos esticados para cima (indicador, médio e anelar).' }
     ],
     questions: [
       {
@@ -215,9 +215,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'M',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/M.png', isCorrect: true },
-          { id: 'opt_2', signImagePath: '/assets/signs/N.png', isCorrect: false },
-          { id: 'opt_3', signImagePath: '/assets/signs/E.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/M.png', isCorrect: true },
+          { id: 'opt_2', signImagePath: './assets/signs/N.png', isCorrect: false },
+          { id: 'opt_3', signImagePath: './assets/signs/E.png', isCorrect: false }
         ],
         hint: 'Conta as 3 pernas caídas para baixo do M!'
       },
@@ -226,9 +226,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'N',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/M.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/N.png', isCorrect: true },
-          { id: 'opt_3', signImagePath: '/assets/signs/U.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/M.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/N.png', isCorrect: true },
+          { id: 'opt_3', signImagePath: './assets/signs/U.png', isCorrect: false }
         ],
         hint: 'Apenas 2 pernas caídas para baixo no N!'
       },
@@ -237,9 +237,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'W',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/V.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/B.png', isCorrect: false },
-          { id: 'opt_3', signImagePath: '/assets/signs/W.png', isCorrect: true }
+          { id: 'opt_1', signImagePath: './assets/signs/V.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/B.png', isCorrect: false },
+          { id: 'opt_3', signImagePath: './assets/signs/W.png', isCorrect: true }
         ],
         hint: 'Três dedos abertos apontados para o alto.'
       }
@@ -254,10 +254,10 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
     rewardStars: 20,
     rewardXp: 45,
     letters: [
-      { letter: 'Q', name: 'Letra Q', signImagePath: '/assets/signs/Q.png', tip: 'G virado para baixo, com indicador e polegar apontando para o chão.' },
-      { letter: 'R', name: 'Letra R', signImagePath: '/assets/signs/R.png', tip: 'Dedos indicador e médio cruzados (como figa da sorte).' },
-      { letter: 'S', name: 'Letra S', signImagePath: '/assets/signs/S.png', tip: 'Punho fechado com o polegar dobrado na frente dos dedos.' },
-      { letter: 'T', name: 'Letra T', signImagePath: '/assets/signs/T.png', tip: 'Indicador dobrado e polegar apoiado POR DENTRO (T = polegar Tem dentro).' }
+      { letter: 'Q', name: 'Letra Q', signImagePath: './assets/signs/Q.png', tip: 'G virado para baixo, com indicador e polegar apontando para o chão.' },
+      { letter: 'R', name: 'Letra R', signImagePath: './assets/signs/R.png', tip: 'Dedos indicador e médio cruzados (como figa da sorte).' },
+      { letter: 'S', name: 'Letra S', signImagePath: './assets/signs/S.png', tip: 'Punho fechado com o polegar dobrado na frente dos dedos.' },
+      { letter: 'T', name: 'Letra T', signImagePath: './assets/signs/T.png', tip: 'Indicador dobrado e polegar apoiado POR DENTRO (T = polegar Tem dentro).' }
     ],
     questions: [
       {
@@ -265,9 +265,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'R',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/R.png', isCorrect: true },
-          { id: 'opt_2', signImagePath: '/assets/signs/U.png', isCorrect: false },
-          { id: 'opt_3', signImagePath: '/assets/signs/V.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/R.png', isCorrect: true },
+          { id: 'opt_2', signImagePath: './assets/signs/U.png', isCorrect: false },
+          { id: 'opt_3', signImagePath: './assets/signs/V.png', isCorrect: false }
         ],
         hint: 'Cruze os dedos para torcer por sorte!'
       },
@@ -276,9 +276,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'S',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/A.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/S.png', isCorrect: true },
-          { id: 'opt_3', signImagePath: '/assets/signs/O.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/A.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/S.png', isCorrect: true },
+          { id: 'opt_3', signImagePath: './assets/signs/O.png', isCorrect: false }
         ],
         hint: 'No S o polegar passa na frente de todos os dedos fechados.'
       },
@@ -287,9 +287,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'T',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/F.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/T.png', isCorrect: true },
-          { id: 'opt_3', signImagePath: '/assets/signs/B.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/F.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/T.png', isCorrect: true },
+          { id: 'opt_3', signImagePath: './assets/signs/B.png', isCorrect: false }
         ],
         hint: 'O polegar fica por dentro do indicador!'
       },
@@ -298,9 +298,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'Q',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/G.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/P.png', isCorrect: false },
-          { id: 'opt_3', signImagePath: '/assets/signs/Q.png', isCorrect: true }
+          { id: 'opt_1', signImagePath: './assets/signs/G.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/P.png', isCorrect: false },
+          { id: 'opt_3', signImagePath: './assets/signs/Q.png', isCorrect: true }
         ],
         hint: 'Parece o G, mas com a mão virada para o chão.'
       }
@@ -315,10 +315,10 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
     rewardStars: 25,
     rewardXp: 50,
     letters: [
-      { letter: 'H', name: 'Letra H', signImagePath: '/assets/signs/H.png', tip: 'Configuração em K dando uma volta/giro de 180° no ar.' },
-      { letter: 'J', name: 'Letra J', signImagePath: '/assets/signs/J.png', tip: 'Mão com o mindinho do I desenhando uma curva no ar em formato de J.' },
-      { letter: 'K', name: 'Letra K', signImagePath: '/assets/signs/K.png', tip: 'Indicador e médio abertos com o polegar no meio, subindo ligeiramente.' },
-      { letter: 'Z', name: 'Letra Z', signImagePath: '/assets/signs/Z.png', tip: 'Indicador desenha o zigue-zague da letra Z no ar.' }
+      { letter: 'H', name: 'Letra H', signImagePath: './assets/signs/H.png', tip: 'Configuração em K dando uma volta/giro de 180° no ar.' },
+      { letter: 'J', name: 'Letra J', signImagePath: './assets/signs/J.png', tip: 'Mão com o mindinho do I desenhando uma curva no ar em formato de J.' },
+      { letter: 'K', name: 'Letra K', signImagePath: './assets/signs/K.png', tip: 'Indicador e médio abertos com o polegar no meio, subindo ligeiramente.' },
+      { letter: 'Z', name: 'Letra Z', signImagePath: './assets/signs/Z.png', tip: 'Indicador desenha o zigue-zague da letra Z no ar.' }
     ],
     questions: [
       {
@@ -326,9 +326,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'Z',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/D.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/Z.png', isCorrect: true },
-          { id: 'opt_3', signImagePath: '/assets/signs/X.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/D.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/Z.png', isCorrect: true },
+          { id: 'opt_3', signImagePath: './assets/signs/X.png', isCorrect: false }
         ],
         hint: 'O dedo indicador desenha a letra Z no ar!'
       },
@@ -337,9 +337,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'J',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/I.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/J.png', isCorrect: true },
-          { id: 'opt_3', signImagePath: '/assets/signs/Y.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/I.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/J.png', isCorrect: true },
+          { id: 'opt_3', signImagePath: './assets/signs/Y.png', isCorrect: false }
         ],
         hint: 'É o mindinho do I desenhando um anzol!'
       },
@@ -348,9 +348,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'K',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/K.png', isCorrect: true },
-          { id: 'opt_2', signImagePath: '/assets/signs/P.png', isCorrect: false },
-          { id: 'opt_3', signImagePath: '/assets/signs/V.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/K.png', isCorrect: true },
+          { id: 'opt_2', signImagePath: './assets/signs/P.png', isCorrect: false },
+          { id: 'opt_3', signImagePath: './assets/signs/V.png', isCorrect: false }
         ],
         hint: 'Polegar apoia no meio do indicador e médio, dando um impulsinho para cima.'
       },
@@ -359,9 +359,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'H',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/K.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/H.png', isCorrect: true },
-          { id: 'opt_3', signImagePath: '/assets/signs/P.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/K.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/H.png', isCorrect: true },
+          { id: 'opt_3', signImagePath: './assets/signs/P.png', isCorrect: false }
         ],
         hint: 'A mão faz um giro no ar!'
       }
@@ -376,8 +376,8 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
     rewardStars: 20,
     rewardXp: 45,
     letters: [
-      { letter: 'X', name: 'Letra X', signImagePath: '/assets/signs/X.png', tip: 'Indicador dobrado em forma de gancho puxando suavemente em sua direção.' },
-      { letter: 'Y', name: 'Letra Y', signImagePath: '/assets/signs/Y.png', tip: 'Polegar e mindinho esticados (o famoso sinal de hang-loose ou telefone).' }
+      { letter: 'X', name: 'Letra X', signImagePath: './assets/signs/X.png', tip: 'Indicador dobrado em forma de gancho puxando suavemente em sua direção.' },
+      { letter: 'Y', name: 'Letra Y', signImagePath: './assets/signs/Y.png', tip: 'Polegar e mindinho esticados (o famoso sinal de hang-loose ou telefone).' }
     ],
     questions: [
       {
@@ -385,9 +385,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'Y',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/I.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/Y.png', isCorrect: true },
-          { id: 'opt_3', signImagePath: '/assets/signs/L.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/I.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/Y.png', isCorrect: true },
+          { id: 'opt_3', signImagePath: './assets/signs/L.png', isCorrect: false }
         ],
         hint: 'Polegar e mindinho abertos!'
       },
@@ -396,9 +396,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'X',
         prompt: 'Qual mão combina com esta letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/X.png', isCorrect: true },
-          { id: 'opt_2', signImagePath: '/assets/signs/D.png', isCorrect: false },
-          { id: 'opt_3', signImagePath: '/assets/signs/G.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/X.png', isCorrect: true },
+          { id: 'opt_2', signImagePath: './assets/signs/D.png', isCorrect: false },
+          { id: 'opt_3', signImagePath: './assets/signs/G.png', isCorrect: false }
         ],
         hint: 'O indicador dobra como um anzol puxando para você.'
       }
@@ -413,11 +413,11 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
     rewardStars: 30,
     rewardXp: 60,
     letters: [
-      { letter: 'O', name: 'Letra O', signImagePath: '/assets/signs/O.png', tip: 'Primeira letra de OI e segunda de BOM.' },
-      { letter: 'I', name: 'Letra I', signImagePath: '/assets/signs/I.png', tip: 'Segunda letra de OI.' },
-      { letter: 'P', name: 'Letra P', signImagePath: '/assets/signs/P.png', tip: 'Primeira letra de PAZ.' },
-      { letter: 'A', name: 'Letra A', signImagePath: '/assets/signs/A.png', tip: 'Segunda letra de PAZ e primeira de AMOR.' },
-      { letter: 'Z', name: 'Letra Z', signImagePath: '/assets/signs/Z.png', tip: 'Letra final de PAZ desenhada no ar.' }
+      { letter: 'O', name: 'Letra O', signImagePath: './assets/signs/O.png', tip: 'Primeira letra de OI e segunda de BOM.' },
+      { letter: 'I', name: 'Letra I', signImagePath: './assets/signs/I.png', tip: 'Segunda letra de OI.' },
+      { letter: 'P', name: 'Letra P', signImagePath: './assets/signs/P.png', tip: 'Primeira letra de PAZ.' },
+      { letter: 'A', name: 'Letra A', signImagePath: './assets/signs/A.png', tip: 'Segunda letra de PAZ e primeira de AMOR.' },
+      { letter: 'Z', name: 'Letra Z', signImagePath: './assets/signs/Z.png', tip: 'Letra final de PAZ desenhada no ar.' }
     ],
     questions: [
       {
@@ -425,9 +425,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'O',
         prompt: 'Para soletrar "OI", qual é a primeira letra?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/O.png', isCorrect: true },
-          { id: 'opt_2', signImagePath: '/assets/signs/I.png', isCorrect: false },
-          { id: 'opt_3', signImagePath: '/assets/signs/U.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/O.png', isCorrect: true },
+          { id: 'opt_2', signImagePath: './assets/signs/I.png', isCorrect: false },
+          { id: 'opt_3', signImagePath: './assets/signs/U.png', isCorrect: false }
         ],
         hint: 'Comece fazendo o círculo da letra O!'
       },
@@ -436,9 +436,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'I',
         prompt: 'E qual é a segunda letra para terminar a palavra "OI"?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/E.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/I.png', isCorrect: true },
-          { id: 'opt_3', signImagePath: '/assets/signs/L.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/E.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/I.png', isCorrect: true },
+          { id: 'opt_3', signImagePath: './assets/signs/L.png', isCorrect: false }
         ],
         hint: 'Erga o dedinho mindinho para a letra I!'
       },
@@ -447,9 +447,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'P',
         prompt: 'Para soletrar a palavra "PAZ", qual mão representa a letra P?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/P.png', isCorrect: true },
-          { id: 'opt_2', signImagePath: '/assets/signs/B.png', isCorrect: false },
-          { id: 'opt_3', signImagePath: '/assets/signs/K.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/P.png', isCorrect: true },
+          { id: 'opt_2', signImagePath: './assets/signs/B.png', isCorrect: false },
+          { id: 'opt_3', signImagePath: './assets/signs/K.png', isCorrect: false }
         ],
         hint: 'A mão em K apontada para o lado com o médio para baixo.'
       },
@@ -458,9 +458,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'Z',
         prompt: 'Qual letra finaliza a palavra "PAZ"?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/S.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/X.png', isCorrect: false },
-          { id: 'opt_3', signImagePath: '/assets/signs/Z.png', isCorrect: true }
+          { id: 'opt_1', signImagePath: './assets/signs/S.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/X.png', isCorrect: false },
+          { id: 'opt_3', signImagePath: './assets/signs/Z.png', isCorrect: true }
         ],
         hint: 'O zigue-zague desenhado no ar!'
       }
@@ -475,12 +475,12 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
     rewardStars: 50,
     rewardXp: 100,
     letters: [
-      { letter: 'A', name: 'Vogal A', signImagePath: '/assets/signs/A.png' },
-      { letter: 'B', name: 'Consoante B', signImagePath: '/assets/signs/B.png' },
-      { letter: 'L', name: 'Consoante L', signImagePath: '/assets/signs/L.png' },
-      { letter: 'M', name: 'Consoante M', signImagePath: '/assets/signs/M.png' },
-      { letter: 'R', name: 'Consoante R', signImagePath: '/assets/signs/R.png' },
-      { letter: 'Z', name: 'Consoante Z', signImagePath: '/assets/signs/Z.png' }
+      { letter: 'A', name: 'Vogal A', signImagePath: './assets/signs/A.png' },
+      { letter: 'B', name: 'Consoante B', signImagePath: './assets/signs/B.png' },
+      { letter: 'L', name: 'Consoante L', signImagePath: './assets/signs/L.png' },
+      { letter: 'M', name: 'Consoante M', signImagePath: './assets/signs/M.png' },
+      { letter: 'R', name: 'Consoante R', signImagePath: './assets/signs/R.png' },
+      { letter: 'Z', name: 'Consoante Z', signImagePath: './assets/signs/Z.png' }
     ],
     questions: [
       {
@@ -488,9 +488,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'B',
         prompt: 'Desafio 1 de 5: Qual mão representa a letra B?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/B.png', isCorrect: true },
-          { id: 'opt_2', signImagePath: '/assets/signs/D.png', isCorrect: false },
-          { id: 'opt_3', signImagePath: '/assets/signs/P.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/B.png', isCorrect: true },
+          { id: 'opt_2', signImagePath: './assets/signs/D.png', isCorrect: false },
+          { id: 'opt_3', signImagePath: './assets/signs/P.png', isCorrect: false }
         ],
         hint: 'Quatro dedos juntos para cima.'
       },
@@ -499,9 +499,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'R',
         prompt: 'Desafio 2 de 5: Qual mão representa a letra R?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/U.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/R.png', isCorrect: true },
-          { id: 'opt_3', signImagePath: '/assets/signs/V.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/U.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/R.png', isCorrect: true },
+          { id: 'opt_3', signImagePath: './assets/signs/V.png', isCorrect: false }
         ],
         hint: 'Dedos cruzados da sorte.'
       },
@@ -510,9 +510,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'M',
         prompt: 'Desafio 3 de 5: Qual mão representa a letra M?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/N.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/W.png', isCorrect: false },
-          { id: 'opt_3', signImagePath: '/assets/signs/M.png', isCorrect: true }
+          { id: 'opt_1', signImagePath: './assets/signs/N.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/W.png', isCorrect: false },
+          { id: 'opt_3', signImagePath: './assets/signs/M.png', isCorrect: true }
         ],
         hint: 'Três dedos para baixo.'
       },
@@ -521,9 +521,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'L',
         prompt: 'Desafio 4 de 5: Qual mão representa a letra L?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/L.png', isCorrect: true },
-          { id: 'opt_2', signImagePath: '/assets/signs/G.png', isCorrect: false },
-          { id: 'opt_3', signImagePath: '/assets/signs/D.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/L.png', isCorrect: true },
+          { id: 'opt_2', signImagePath: './assets/signs/G.png', isCorrect: false },
+          { id: 'opt_3', signImagePath: './assets/signs/D.png', isCorrect: false }
         ],
         hint: 'Formato da letra L com polegar e indicador.'
       },
@@ -532,9 +532,9 @@ export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [
         targetLetter: 'Z',
         prompt: 'Desafio Final: Qual mão representa a letra Z?',
         options: [
-          { id: 'opt_1', signImagePath: '/assets/signs/S.png', isCorrect: false },
-          { id: 'opt_2', signImagePath: '/assets/signs/Z.png', isCorrect: true },
-          { id: 'opt_3', signImagePath: '/assets/signs/X.png', isCorrect: false }
+          { id: 'opt_1', signImagePath: './assets/signs/S.png', isCorrect: false },
+          { id: 'opt_2', signImagePath: './assets/signs/Z.png', isCorrect: true },
+          { id: 'opt_3', signImagePath: './assets/signs/X.png', isCorrect: false }
         ],
         hint: 'Desenhe o Z no ar!'
       }

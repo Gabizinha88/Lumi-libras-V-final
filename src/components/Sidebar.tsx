@@ -115,7 +115,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             >
               <div className="w-9 h-9 rounded-xl overflow-hidden shrink-0 shadow-2xs group-hover:scale-105 transition-transform">
                 <img
-                  src="/assets/logo_stitch.png"
+                  src="./assets/logo_stitch.png"
                   onError={(e) => {
                     (e.currentTarget as HTMLImageElement).src =
                       'https://lh3.googleusercontent.com/aida-public/AB6AXuBW9N146_koeeKHAoTrsuhr2gb5lxr_2jLTF2q96K-l87-NHXh_QkFuHjLP7gDu2n8-cARGADgseE6myD9_Mz2TLiaZS1y7PwEA40289iy9k9CstyIHqZUBF5V2-aywlWkT3_IMC7Ppi_UzoXqgM4zyzdNSkj1VPruFClDXV-wZVVmNov4TfpxBVyeodhVkD-e_KJ_o6b0NWUQurU0I6FkpMJDammbpYGMpTwUzOreLYZtdZ6kS7blSM4PC957vbkod-zY';

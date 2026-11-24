@@ -35,7 +35,7 @@ export interface RealSignMedia {
 export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   A: {
     letter: 'A',
-    photoUrl: '/signs/A.png',
+    photoUrl: './signs/A.png',
     palmOrientation: 'Palma voltada para a frente',
     knucklesFocus: 'Punho cerrado; polegar ereto encostado ao lado do dedo indicador',
     commonMistake: 'Cruzar o polegar sobre os dedos (isso é a letra S ou E)',
@@ -43,7 +43,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   B: {
     letter: 'B',
-    photoUrl: '/signs/B.png',
+    photoUrl: './signs/B.png',
     palmOrientation: 'Palma voltada para a frente',
     knucklesFocus: '4 dedos eretos e unidos; polegar flexionado encostando no centro da palma',
     commonMistake: 'Deixar os 4 dedos afastados (mantenha-os unidos)',
@@ -51,7 +51,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   C: {
     letter: 'C',
-    photoUrl: '/signs/C.png',
+    photoUrl: './signs/C.png',
     palmOrientation: 'Palma de perfil voltada para o centro',
     knucklesFocus: 'Dedos e polegar formam um arco em C contínuo',
     commonMistake: 'Fechar totalmente o círculo como a letra O',
@@ -59,7 +59,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   D: {
     letter: 'D',
-    photoUrl: '/signs/D.png',
+    photoUrl: './signs/D.png',
     palmOrientation: 'Palma para frente ou levemente de perfil',
     knucklesFocus: 'Dedo indicador esticado verticalmente; os outros 3 tocam a ponta do polegar',
     commonMistake: 'Levantar dois dedos (isso seria o número 2 ou V)',
@@ -67,7 +67,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   E: {
     letter: 'E',
-    photoUrl: '/signs/E.png',
+    photoUrl: './signs/E.png',
     palmOrientation: 'Palma voltada para a frente',
     knucklesFocus: 'Dedos curvados sobre o polegar dobrado, mostrando as unhas para a frente',
     commonMistake: 'Esconder as pontas dos dedos para dentro da palma',
@@ -75,7 +75,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   F: {
     letter: 'F',
-    photoUrl: '/signs/F.png',
+    photoUrl: './signs/F.png',
     palmOrientation: 'Palma voltada para a frente',
     knucklesFocus: 'Indicador dobrado em gancho com o polegar encostado POR FORA dele',
     commonMistake: 'Colocar o polegar por dentro (isso é a letra T)',
@@ -83,7 +83,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   G: {
     letter: 'G',
-    photoUrl: '/signs/G.png',
+    photoUrl: './signs/G.png',
     palmOrientation: 'Dorso da mão voltado para frente ou para você',
     knucklesFocus: 'Indicador apontando para cima e polegar aberto a 90 graus',
     commonMistake: 'Abrir todos os dedos',
@@ -91,7 +91,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   H: {
     letter: 'H',
-    photoUrl: '/signs/H.png',
+    photoUrl: './signs/H.png',
     palmOrientation: 'Palma de perfil girando no próprio eixo',
     knucklesFocus: 'Dedos indicador e médio em V horizontal com o polegar apoiado entre eles',
     commonMistake: 'Esquecer o movimento de rotação do punho',
@@ -99,7 +99,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   I: {
     letter: 'I',
-    photoUrl: '/signs/I.png',
+    photoUrl: './signs/I.png',
     palmOrientation: 'Palma voltada para a frente',
     knucklesFocus: 'Mão fechada com APENAS o dedo mindinho apontado reto para cima',
     commonMistake: 'Soltar os outros dedos',
@@ -107,7 +107,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   J: {
     letter: 'J',
-    photoUrl: '/signs/J.png',
+    photoUrl: './signs/J.png',
     palmOrientation: 'Inicia de frente e traça uma curva',
     knucklesFocus: 'Configuração em I (mindinho esticado) desenhando o gancho da letra J no ar',
     commonMistake: 'Mover o braço inteiro em vez de usar o punho',
@@ -115,7 +115,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   K: {
     letter: 'K',
-    photoUrl: '/signs/K.png',
+    photoUrl: './signs/K.png',
     palmOrientation: 'Palma de perfil voltada para o lado',
     knucklesFocus: 'Mesma posição do H (indicador e médio em V com polegar no meio), com pequeno salto vertical para cima',
     commonMistake: 'Girar a mão como no H (o K tem impulso vertical para cima)',
@@ -123,7 +123,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   L: {
     letter: 'L',
-    photoUrl: '/signs/L.png',
+    photoUrl: './signs/L.png',
     palmOrientation: 'Palma voltada para a frente',
     knucklesFocus: 'Indicador e polegar abertos a 90 graus formando a letra L visível',
     commonMistake: 'Curvar o polegar',
@@ -131,7 +131,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   M: {
     letter: 'M',
-    photoUrl: '/signs/M.png',
+    photoUrl: './signs/M.png',
     palmOrientation: 'Dedos apontando para baixo',
     knucklesFocus: 'Três dedos (indicador, médio e anelar) estendidos para baixo sobre o polegar dobrado',
     commonMistake: 'Colocar 4 dedos para baixo',
@@ -139,7 +139,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   N: {
     letter: 'N',
-    photoUrl: '/signs/N.png',
+    photoUrl: './signs/N.png',
     palmOrientation: 'Dedos apontando para baixo',
     knucklesFocus: 'Dois dedos (indicador e médio) apontando para baixo sobre o polegar',
     commonMistake: 'Confundir com o M (que usa 3 dedos)',
@@ -147,7 +147,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   O: {
     letter: 'O',
-    photoUrl: '/signs/O.png',
+    photoUrl: './signs/O.png',
     palmOrientation: 'Palma voltada para o centro ou perfil',
     knucklesFocus: 'Todos os 4 dedos tocam a ponta do polegar formando um círculo oval fechado',
     commonMistake: 'Deixar espaço aberto (isso é a letra C)',
@@ -155,7 +155,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   P: {
     letter: 'P',
-    photoUrl: '/signs/P.png',
+    photoUrl: './signs/P.png',
     palmOrientation: 'Palma voltada para baixo ou chão',
     knucklesFocus: 'Mesma configuração do K e H, mas com o indicador apontando horizontalmente para a frente e polegar no meio',
     commonMistake: 'Apontar para cima como o K',
@@ -163,7 +163,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   Q: {
     letter: 'Q',
-    photoUrl: '/signs/Q.png',
+    photoUrl: './signs/Q.png',
     palmOrientation: 'Palma voltada para você ou chão',
     knucklesFocus: 'Configuração semelhante ao G, mas apontando para baixo em direção ao chão',
     commonMistake: 'Apontar para cima como o G',
@@ -171,7 +171,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   R: {
     letter: 'R',
-    photoUrl: '/signs/R.png',
+    photoUrl: './signs/R.png',
     palmOrientation: 'Palma voltada para a frente',
     knucklesFocus: 'Dedos indicador e médio cruzados (médio passa por trás do indicador)',
     commonMistake: 'Separar os dedos em V (isso é a letra V)',
@@ -179,7 +179,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   S: {
     letter: 'S',
-    photoUrl: '/signs/S.png',
+    photoUrl: './signs/S.png',
     palmOrientation: 'Palma voltada para a frente',
     knucklesFocus: 'Mão fechada em punho com o polegar cruzado sobre o centro dos outros dedos',
     commonMistake: 'Deixar o polegar ao lado (isso é a letra A)',
@@ -187,7 +187,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   T: {
     letter: 'T',
-    photoUrl: '/signs/T.png',
+    photoUrl: './signs/T.png',
     palmOrientation: 'Palma voltada para a frente',
     knucklesFocus: 'Indicador dobrado com o polegar posicionado POR DENTRO dele',
     commonMistake: 'Colocar o polegar por fora (isso é a letra F)',
@@ -195,7 +195,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   U: {
     letter: 'U',
-    photoUrl: '/signs/U.png',
+    photoUrl: './signs/U.png',
     palmOrientation: 'Palma voltada para a frente',
     knucklesFocus: 'Dedos indicador e médio eretos juntos e colados um ao outro',
     commonMistake: 'Separar os dedos em V (isso é a letra V)',
@@ -203,7 +203,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   V: {
     letter: 'V',
-    photoUrl: '/signs/V.png',
+    photoUrl: './signs/V.png',
     palmOrientation: 'Palma voltada para a frente',
     knucklesFocus: 'Dedos indicador e médio abertos em formato de V de vitória',
     commonMistake: 'Juntar os dedos (isso é o U)',
@@ -211,7 +211,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   W: {
     letter: 'W',
-    photoUrl: '/signs/W.png',
+    photoUrl: './signs/W.png',
     palmOrientation: 'Palma voltada para a frente',
     knucklesFocus: 'Três dedos (indicador, médio e anelar) eretos e abertos em tridente',
     commonMistake: 'Fechar o anelar',
@@ -219,7 +219,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   X: {
     letter: 'X',
-    photoUrl: '/signs/X.png',
+    photoUrl: './signs/X.png',
     palmOrientation: 'Palma de perfil puxando para trás',
     knucklesFocus: 'Indicador em formato de gancho curvado, puxando um pequeno tranco para você',
     commonMistake: 'Esquecer o movimento de puxar para trás',
@@ -227,7 +227,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   Y: {
     letter: 'Y',
-    photoUrl: '/signs/Y.png',
+    photoUrl: './signs/Y.png',
     palmOrientation: 'Palma voltada para você ou frente com pequeno balanço',
     knucklesFocus: 'Polegar e mindinho esticados para fora (formato "hang loose" ou telefone)',
     commonMistake: 'Esconder o polegar',
@@ -235,7 +235,7 @@ export const REAL_ALPHABET_MEDIA: Record<string, RealHandLetterMedia> = {
   },
   Z: {
     letter: 'Z',
-    photoUrl: '/signs/Z.png',
+    photoUrl: './signs/Z.png',
     palmOrientation: 'Palma de perfil desenhando no ar',
     knucklesFocus: 'Indicador esticado apontando para frente desenhando o traço da letra Z',
     commonMistake: 'Desenhar muito rápido sem marcar as esquinas do Z',
@@ -249,7 +249,7 @@ export const REAL_SIGNS_MEDIA: Record<string, RealSignMedia> = {
     id: 'oi',
     title: 'Oi / Olá',
     category: 'cumprimentos',
-    photoUrl: '/signs/O.png',
+    photoUrl: './signs/O.png',
     sourceAttribution: 'Dicionário de Libras UFV/CEAD & Libras ON/UFSM',
     signerNote: 'Inicie com a mão fechada na letra O e abra o mindinho na letra I com um aceno suave.',
     slowMotionGuide: 'Observe a transição fluida do polegar tocando o indicador para o dedo mínimo se esticar.'
@@ -258,7 +258,7 @@ export const REAL_SIGNS_MEDIA: Record<string, RealSignMedia> = {
     id: 'tudobem',
     title: 'Tudo Bem? / Bom!',
     category: 'cumprimentos',
-    photoUrl: '/signs/B.png',
+    photoUrl: './signs/B.png',
     sourceAttribution: 'Dicionário de Libras UFV/CEAD',
     signerNote: 'Mão na boca em concha abrindo para a frente em sinal de positivo (polegar para cima).',
     slowMotionGuide: 'Note a expressão facial interrogativa se for pergunta, ou afirmativa com sorriso se for resposta.'
@@ -267,7 +267,7 @@ export const REAL_SIGNS_MEDIA: Record<string, RealSignMedia> = {
     id: 'bomdia',
     title: 'Bom Dia',
     category: 'cumprimentos',
-    photoUrl: '/signs/D.png',
+    photoUrl: './signs/D.png',
     sourceAttribution: 'Dicionário de Libras UFV/CEAD',
     signerNote: 'Sinal de "Bom" (mão na boca abrindo) + letra D tocando a testa ou abrindo como o sol nascendo.',
     slowMotionGuide: 'Movimento em dois tempos: do peito/boca para o campo espacial aberto.'
@@ -276,7 +276,7 @@ export const REAL_SIGNS_MEDIA: Record<string, RealSignMedia> = {
     id: 'obrigado',
     title: 'Obrigado(a)',
     category: 'cumprimentos',
-    photoUrl: '/signs/O.png',
+    photoUrl: './signs/O.png',
     sourceAttribution: 'Dicionário de Libras UFV/CEAD',
     signerNote: 'Palma aberta na testa e outra no queixo/peito, estendendo-as suavemente para a frente.',
     slowMotionGuide: 'O olhar segue a pessoa a quem se agradece com inclinação gentil de cabeça.'
@@ -285,7 +285,7 @@ export const REAL_SIGNS_MEDIA: Record<string, RealSignMedia> = {
     id: 'porfavor',
     title: 'Por Favor / Com Licença',
     category: 'cumprimentos',
-    photoUrl: '/signs/P.png',
+    photoUrl: './signs/P.png',
     sourceAttribution: 'Dicionário de Libras UFV/CEAD',
     signerNote: 'Palmas das mãos juntas em prece suave, ou mão no peito em círculo.',
     slowMotionGuide: 'Movimento suave e expressão facial acolhedora.'
@@ -294,7 +294,7 @@ export const REAL_SIGNS_MEDIA: Record<string, RealSignMedia> = {
     id: 'amigo',
     title: 'Amigo',
     category: 'cumprimentos',
-    photoUrl: '/signs/A.png',
+    photoUrl: './signs/A.png',
     sourceAttribution: 'Dicionário de Libras UFV/CEAD',
     signerNote: 'Mão aberta toca com a palma no lado esquerdo do peito (sobre o coração) com leve batidinha.',
     slowMotionGuide: 'Toque afetivo demonstrando proximidade do coração.'
@@ -303,7 +303,7 @@ export const REAL_SIGNS_MEDIA: Record<string, RealSignMedia> = {
     id: 'familia',
     title: 'Família',
     category: 'familia',
-    photoUrl: '/signs/F.png',
+    photoUrl: './signs/F.png',
     sourceAttribution: 'Dicionário de Libras UFV/CEAD',
     signerNote: 'Ambas as mãos na letra F com pontas dos polegares se tocando, abrindo um círculo até se encontrarem pelos mindinhos.',
     slowMotionGuide: 'Observe o traçado circular completo que simboliza a união familiar fechada.'
@@ -312,7 +312,7 @@ export const REAL_SIGNS_MEDIA: Record<string, RealSignMedia> = {
     id: 'pai',
     title: 'Pai',
     category: 'familia',
-    photoUrl: '/signs/P.png',
+    photoUrl: './signs/P.png',
     sourceAttribution: 'Dicionário de Libras UFV/CEAD',
     signerNote: 'Sinal de "homem" (polegar na bochecha/barba) seguido de bênção (beijar o dorso da mão).',
     slowMotionGuide: 'Dois passos fluidos demonstrando respeito e carinho.'
@@ -321,7 +321,7 @@ export const REAL_SIGNS_MEDIA: Record<string, RealSignMedia> = {
     id: 'mae',
     title: 'Mãe',
     category: 'familia',
-    photoUrl: '/signs/M.png',
+    photoUrl: './signs/M.png',
     sourceAttribution: 'Dicionário de Libras UFV/CEAD',
     signerNote: 'Sinal de "mulher" (polegar deslizando na bochecha) seguido de beijar o dorso da mão.',
     slowMotionGuide: 'Deslize sutil na mandíbula seguido do gesto acolhedor na mão.'
@@ -330,7 +330,7 @@ export const REAL_SIGNS_MEDIA: Record<string, RealSignMedia> = {
     id: 'irmao',
     title: 'Irmão / Irmã',
     category: 'familia',
-    photoUrl: '/signs/I.png',
+    photoUrl: './signs/I.png',
     sourceAttribution: 'Dicionário de Libras UFV/CEAD',
     signerNote: 'Indicadores estendidos lado a lado se tocando nas laterais repetidamente.',
     slowMotionGuide: 'Movimento de atrito suave entre os dois dedos indicadores.'
@@ -339,7 +339,7 @@ export const REAL_SIGNS_MEDIA: Record<string, RealSignMedia> = {
     id: 'escola',
     title: 'Escola',
     category: 'escola',
-    photoUrl: '/signs/E.png',
+    photoUrl: './signs/E.png',
     sourceAttribution: 'Dicionário de Libras UFV/CEAD',
     signerNote: 'Sinal de "Casa" (mãos formando telhado) + sinal de "Estudar" (duas palmas batendo palmas em concha).',
     slowMotionGuide: 'Sinal composto: a "casa do estudo".'
@@ -348,7 +348,7 @@ export const REAL_SIGNS_MEDIA: Record<string, RealSignMedia> = {
     id: 'professor',
     title: 'Professor(a)',
     category: 'escola',
-    photoUrl: '/signs/P.png',
+    photoUrl: './signs/P.png',
     sourceAttribution: 'Dicionário de Libras UFV/CEAD',
     signerNote: 'Duas mãos na letra P girando alternadamente à frente do peito.',
     slowMotionGuide: 'Movimento rítmico dos braços na altura dos ombros.'
@@ -357,7 +357,7 @@ export const REAL_SIGNS_MEDIA: Record<string, RealSignMedia> = {
     id: 'aprender',
     title: 'Aprender',
     category: 'escola',
-    photoUrl: '/signs/A.png',
+    photoUrl: './signs/A.png',
     sourceAttribution: 'Dicionário de Libras UFV/CEAD',
     signerNote: 'Mão na testa abrindo e fechando como se capturasse conhecimento para a mente.',
     slowMotionGuide: 'O fechar dos dedos na testa representa "guardar na memória".'
@@ -366,7 +366,7 @@ export const REAL_SIGNS_MEDIA: Record<string, RealSignMedia> = {
     id: 'feliz',
     title: 'Feliz / Felicidade',
     category: 'emocoes',
-    photoUrl: '/signs/F.png',
+    photoUrl: './signs/F.png',
     sourceAttribution: 'Dicionário de Libras UFV/CEAD',
     signerNote: 'Ambas as mãos na letra F balançando alternadamente para cima e para baixo em frente ao peito com sorriso radiante.',
     slowMotionGuide: 'A expressão facial alegre e viva é obrigatória para a gramática correta da emoção!'
@@ -375,7 +375,7 @@ export const REAL_SIGNS_MEDIA: Record<string, RealSignMedia> = {
     id: 'amor',
     title: 'Amor / Amar',
     category: 'emocoes',
-    photoUrl: '/signs/A.png',
+    photoUrl: './signs/A.png',
     sourceAttribution: 'Dicionário de Libras UFV/CEAD',
     signerNote: 'Braços cruzados no peito apertando suavemente, como um abraço em si mesmo, ou mãos desenhando coração.',
     slowMotionGuide: 'Gesto caloroso com expressão afetuosa nos olhos e na postura.'
@@ -384,7 +384,7 @@ export const REAL_SIGNS_MEDIA: Record<string, RealSignMedia> = {
     id: 'azul',
     title: 'Azul',
     category: 'cores',
-    photoUrl: '/signs/A.png',
+    photoUrl: './signs/A.png',
     sourceAttribution: 'Dicionário de Libras UFV/CEAD',
     signerNote: 'Letra A deslizando para baixo e transformando-se na letra Z e L.',
     slowMotionGuide: 'Transição suave de datilologia rítmica.'
@@ -393,7 +393,7 @@ export const REAL_SIGNS_MEDIA: Record<string, RealSignMedia> = {
     id: 'amarelo',
     title: 'Amarelo',
     category: 'cores',
-    photoUrl: '/signs/A.png',
+    photoUrl: './signs/A.png',
     sourceAttribution: 'Dicionário de Libras UFV/CEAD',
     signerNote: 'Dedo indicador desce reto pelo nariz em linha vertical.',
     slowMotionGuide: 'Movimento suave vertical sem pressionar o rosto.'
@@ -402,7 +402,7 @@ export const REAL_SIGNS_MEDIA: Record<string, RealSignMedia> = {
     id: 'vermelho',
     title: 'Vermelho',
     category: 'cores',
-    photoUrl: '/signs/V.png',
+    photoUrl: './signs/V.png',
     sourceAttribution: 'Dicionário de Libras UFV/CEAD',
     signerNote: 'Indicador em gancho toca nos lábios e puxa para baixo suavemente.',
     slowMotionGuide: 'A referência visual é a cor natural dos lábios.'

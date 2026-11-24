@@ -46,7 +46,7 @@ export const LumiMascot: React.FC<LumiMascotProps> = ({
       {/* Lumi Character Mascot - High Quality 3D Mascot Image with Open Arms */}
       <div className={`${sizeClasses} relative flex items-center justify-center animate-float-gentle transition-transform duration-300 hover:scale-105 active:scale-95`}>
         <img
-          src="/assets/mascot_stitch.png"
+          src="./assets/mascot_stitch.png"
           alt="Lumi, o monstrinho azul sorridente segurando a estrela dourada"
           className="w-full h-full object-contain drop-shadow-2xl pointer-events-none select-none"
           loading="eager"

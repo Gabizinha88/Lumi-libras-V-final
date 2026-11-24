@@ -520,8 +520,8 @@ export const LessonModal: React.FC<LessonModalProps> = ({
               categoryLabel="Cumprimentos em Libras"
               photoUrl={
                 activeVideoModal === 'oi'
-                  ? '/signs/O.png'
-                  : '/signs/B.png'
+                  ? './signs/O.png'
+                  : './signs/B.png'
               }
               sourceAttribution="Dicionário de Libras UFV/CEAD"
               signerNote={

@@ -152,7 +152,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         <div className="flex items-center justify-center gap-2 mb-6">
           <div className="w-8 h-8 rounded-xl overflow-hidden shrink-0 shadow-2xs">
             <img
-              src="/assets/logo_stitch.png"
+              src="./assets/logo_stitch.png"
               onError={(e) => {
                 // Fallback to URL if local file is missing
                 (e.currentTarget as HTMLImageElement).src =

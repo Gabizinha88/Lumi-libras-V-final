@@ -185,7 +185,7 @@ export const TrailScreen: React.FC<TrailScreenProps> = ({
         <div className="bg-white dark:bg-[#111C35] rounded-3xl p-6 sm:p-8 max-w-md w-full text-center space-y-4 border border-slate-200 dark:border-slate-800 shadow-2xl animate-scaleUp">
           <div className="w-24 h-24 mx-auto relative flex items-center justify-center">
             <img
-              src="/assets/mascot_stitch.png"
+              src="./assets/mascot_stitch.png"
               alt="Lumi Comemorando"
               className="w-full h-full object-contain pointer-events-none select-none drop-shadow-xl animate-bounce"
             />
@@ -365,7 +365,7 @@ export const TrailScreen: React.FC<TrailScreenProps> = ({
         <div className="bg-white dark:bg-[#111C35] rounded-3xl p-4 sm:p-5 border border-slate-200/90 dark:border-slate-800 shadow-xs flex items-center gap-4 text-left transition-colors">
           <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 relative flex items-center justify-center">
             <img
-              src="/assets/mascot_stitch.png"
+              src="./assets/mascot_stitch.png"
               alt="Lumi Mascote"
               className="w-full h-full object-contain pointer-events-none select-none drop-shadow-md"
             />
@@ -549,7 +549,7 @@ export const TrailScreen: React.FC<TrailScreenProps> = ({
         <div className="bg-white dark:bg-[#111C35] rounded-3xl p-4 sm:p-5 border border-slate-200/90 dark:border-slate-800 shadow-xs flex items-center gap-4 text-left transition-colors">
           <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 relative flex items-center justify-center">
             <img
-              src="/assets/mascot_stitch.png"
+              src="./assets/mascot_stitch.png"
               alt="Lumi Mascote"
               className="w-full h-full object-contain pointer-events-none select-none drop-shadow-md"
             />
@@ -687,7 +687,7 @@ export const TrailScreen: React.FC<TrailScreenProps> = ({
             {/* Mascot Image */}
             <div className="w-32 h-32 sm:w-36 sm:h-36 relative flex items-center justify-center my-2">
               <img
-                src="/assets/mascot_stitch.png"
+                src="./assets/mascot_stitch.png"
                 alt="Lumi segurando uma estrela dourada"
                 className="w-full h-full object-contain pointer-events-none select-none drop-shadow-xl animate-float-gentle"
               />
