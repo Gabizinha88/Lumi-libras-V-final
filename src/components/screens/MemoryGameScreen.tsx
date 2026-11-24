@@ -260,7 +260,7 @@ export const MemoryGameScreen: React.FC<MemoryGameScreenProps> = ({
                         <img
                           src="/assets/logo_recovered.png"
                           onError={(e) => {
-                            (e.currentTarget as HTMLImageElement).src = '/assets/aistudio/image_55e3b101.png';
+                            (e.currentTarget as HTMLImageElement).src = '/assets/logo_stitch.png';
                           }}
                           alt="Lumi Libras Logo"
                           className="w-full h-full object-contain pointer-events-none select-none drop-shadow-xs"

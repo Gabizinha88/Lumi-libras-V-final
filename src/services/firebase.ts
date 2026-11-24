@@ -22,7 +22,6 @@ import { UserAccount, createInitialUserProgress } from '../utils/auth';
 // Initialize Firebase App
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
-/* CRITICAL: Passing firestoreDatabaseId is required by AI Studio environment */
 export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
