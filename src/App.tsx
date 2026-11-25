@@ -240,7 +240,7 @@ export default function App() {
   };
 
   const handleExploreAsGuest = () => {
-    const guestUser = createInitialUserProgress('Visitante', 'visitante@lumilibras.com', 'geral', 'guest_session');
+    const guestUser = createInitialUserProgress('Visitante', '', 'geral', 'guest_session');
     setCurrentUser(guestUser);
     setGuestNoticeShown(false);
     setProgress(extrairProgressoDoUsuario(guestUser));
@@ -443,6 +443,10 @@ export default function App() {
         stats={stats}
         currentUser={currentUser}
         onLogout={handleLogout}
+        onOpenRegister={() => {
+          abrirModal('profile', false);
+          abrirAuthModal('register');
+        }}
       />
 
       <MediaCreditsModal

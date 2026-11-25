@@ -159,7 +159,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
             <div className="lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left order-2 max-w-xl mx-auto lg:mx-0">
               <div className="space-y-6 max-w-lg">
                 <h1 className="text-3xl sm:text-4xl xl:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.15] font-outfit">
-                  O jeito <span className="text-[#2952E3] dark:text-sky-400">grátis</span> e divertido
+                  O jeito <span className="text-[#2952E3] dark:text-sky-400">grátis</span> e interativo
                   de começar em{' '}
                   <span className="text-[#D49D00] dark:text-[#FFC800] relative inline-block">
                     Libras!
@@ -231,11 +231,10 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                 </div>
                 <div>
                   <h3 className="text-base font-extrabold text-slate-800 dark:text-white font-outfit">
-                    Eficaz e Divertido
+                    No seu ritmo
                   </h3>
                   <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-                    Lições em formato de microjogos rápidos de 5 minutos que mantêm você motivado
-                    todos os dias.
+                    Etapas curtas com desafios e feedback imediato para praticar o alfabeto manual quando e onde quiser.
                   </p>
                 </div>
               </div>

@@ -55,7 +55,6 @@ O projeto é publicado automaticamente no **GitHub Pages** por meio do workflow 
 ## Estrutura do Projeto
 
 ```text
-├── docs/                       # Documentação técnica e guias de estudo para o TCC
 ├── public/                     # Assets públicos (ilustrações das mãos, mascote, fonte Libras-2016)
 ├── src/
 │   ├── main.tsx                # Ponto de entrada React
@@ -72,15 +71,6 @@ O projeto é publicado automaticamente no **GitHub Pages** por meio do workflow 
 ├── firestore.rules             # Regras de segurança do Cloud Firestore (users/{uid})
 └── vite.config.ts              # Configuração de build e base do GitHub Pages
 ```
-
-## Documentação para Estudo (TCC)
-
-- [Mapa do Código](docs/MAPA_DO_CODIGO.md) — inventário completo dos arquivos, código morto e mapa das regras.
-- [Arquitetura do Sistema](docs/ARQUITETURA.md) — visão geral da SPA, fluxo do clique até o Firestore e diagrama Mermaid.
-- [Guia de Estudo](docs/GUIA_DE_ESTUDO.md) — roteiro priorizado (Essencial / Importante / Saber que existe) para a defesa.
-- [20 Perguntas da Banca](docs/PERGUNTAS_DA_BANCA.md) — perguntas técnicas prováveis com respostas fundamentadas no código.
-- [Como Cada Funcionalidade Funciona](docs/COMO_CADA_FUNCIONALIDADE_FUNCIONA.md) — passo a passo por tela/fluxo com arquivos e funções.
-- [Registro de Renomeações e Extrações](docs/RENOMEACOES.md) — mapeamento de funções e arquivos alterados para atualizar o TCC.
 
 ## Fontes Educacionais e Créditos
 

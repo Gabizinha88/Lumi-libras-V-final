@@ -116,7 +116,7 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Sound Toggle - Available on screen or inside mobile sidebar */}
         <button
           onClick={onToggleSound}
-          className="p-1.5 sm:p-2 rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50/60 dark:hover:bg-slate-800 transition-all cursor-pointer hidden xs:inline-flex"
+          className="p-1.5 sm:p-2 rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50/60 dark:hover:bg-slate-800 transition-all cursor-pointer hidden sm:inline-flex"
           title={stats.soundEnabled ? 'Silenciar áudio' : 'Ativar áudio'}
           aria-label="Controle de Som"
         >

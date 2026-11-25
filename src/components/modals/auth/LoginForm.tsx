@@ -40,10 +40,10 @@ export const LoginForm: React.FC<LoginFormProps> = ({
       <form className="space-y-3.5" onSubmit={onSubmit}>
         <div>
           <label className="block text-xs font-black text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
-            E-mail ou Usuário
+            E-mail
           </label>
           <input
-            type="text"
+            type="email"
             required
             value={email}
             onChange={(e) => onEmailChange(e.target.value)}

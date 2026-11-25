@@ -13,6 +13,7 @@ interface ProfileModalProps {
   stats: UserStats;
   currentUser?: UserAccount | null;
   onLogout?: () => void;
+  onOpenRegister?: () => void;
 }
 
 export const ProfileModal: React.FC<ProfileModalProps> = ({
@@ -20,9 +21,12 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
   onClose,
   stats,
   currentUser,
-  onLogout
+  onLogout,
+  onOpenRegister
 }) => {
   if (!isOpen) return null;
+
+  const isGuest = !currentUser || currentUser.id === 'guest_session';
 
   const currentLevelMinXp = (stats.level - 1) * 50;
   const nextLevelXp = stats.level * 50;
@@ -61,18 +65,35 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
           Nível {stats.level} • {stats.levelTitle}
         </p>
 
-        {currentUser?.email && (
-          <div className="flex flex-col items-center gap-1.5 mb-4">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-[11px] font-semibold text-slate-600 dark:text-slate-300">
-              <UserCheck className="w-3.5 h-3.5 text-blue-500" />
-              <span>{currentUser.email}</span>
-              <span className="text-slate-400">•</span>
-              <span className="font-bold text-blue-600 dark:text-sky-400">{roleLabel}</span>
-            </div>
-            <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
-              <span>☁️</span> Sincronizado no Firebase
-            </span>
+        {isGuest ? (
+          <div className="mb-4 p-3.5 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/80 text-center space-y-2.5">
+            <p className="text-xs font-medium text-amber-950 dark:text-amber-100 leading-relaxed">
+              Modo visitante: o progresso não é salvo. Crie uma conta para guardar sua evolução.
+            </p>
+            {onOpenRegister && (
+              <button
+                type="button"
+                onClick={onOpenRegister}
+                className="px-4 py-2 rounded-xl bg-[#2952E3] hover:bg-blue-700 text-white text-xs font-extrabold transition-colors cursor-pointer shadow-xs"
+              >
+                Criar conta
+              </button>
+            )}
           </div>
+        ) : (
+          currentUser?.email && (
+            <div className="flex flex-col items-center gap-1.5 mb-4">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-[11px] font-semibold text-slate-600 dark:text-slate-300">
+                <UserCheck className="w-3.5 h-3.5 text-blue-500" />
+                <span>{currentUser.email}</span>
+                <span className="text-slate-400">•</span>
+                <span className="font-bold text-blue-600 dark:text-sky-400">{roleLabel}</span>
+              </div>
+              <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                <span>☁️</span> Sincronizado no Firebase
+              </span>
+            </div>
+          )
         )}
 
         {/* Stats Grid */}
