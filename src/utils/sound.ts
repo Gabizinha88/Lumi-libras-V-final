@@ -165,20 +165,9 @@ export const playSound = {
     }
   },
 
-  // Cancel any ongoing speech immediately
-  stopSpeaking: () => {
-    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-      try {
-        window.speechSynthesis.cancel();
-      } catch {
-        // ignore
-      }
-    }
-  },
-
   // Por quê: a narração por voz foi desativada para priorizar a experiência visual-espacial da Libras;
-  // manter o cancelamento garante que nenhum navegador inicie fala residual.
-  speakText: (_text?: string, _enabled = true) => {
+  // cancelar speechSynthesis garante que nenhum navegador mantenha fala residual.
+  stopSpeaking: () => {
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       try {
         window.speechSynthesis.cancel();

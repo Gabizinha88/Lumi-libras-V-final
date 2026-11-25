@@ -296,7 +296,7 @@ export const TrailScreen: React.FC<TrailScreenProps> = ({
                     }`}>
                       {stage.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium line-clamp-1 mt-0.5">
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium mt-0.5">
                       {stage.lettersSummary}
                     </p>
                   </div>

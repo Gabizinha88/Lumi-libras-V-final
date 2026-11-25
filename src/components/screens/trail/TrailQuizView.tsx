@@ -177,7 +177,7 @@ export const TrailQuizView: React.FC<TrailQuizViewProps> = ({
           <h4 className="text-sm sm:text-base font-black text-slate-900 dark:text-white font-outfit">
             Lumi está com você
           </h4>
-          <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5 line-clamp-2">
+          <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">
             Observe as mãos antes do desafio. Pode rever as letras quando quiser.
           </p>
           {currentQuestion.hint && (

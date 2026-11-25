@@ -60,17 +60,17 @@ export const TrailObserveView: React.FC<TrailObserveViewProps> = ({
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4 my-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 my-8">
           {stage.letters.map((item, idx) => (
             <div
               key={idx}
-              className="rounded-2xl bg-[#F4F1FD] dark:bg-[#181B38] p-3 sm:p-4 border border-indigo-100/70 dark:border-indigo-900/40 flex flex-col items-center transition-all hover:scale-102 hover:shadow-xs"
+              className="h-full rounded-2xl bg-[#F4F1FD] dark:bg-[#181B38] p-2.5 sm:p-4 border border-indigo-100/70 dark:border-indigo-900/40 flex flex-col items-center transition-all hover:scale-102 hover:shadow-xs"
             >
               <span className="text-base sm:text-lg font-black text-indigo-700 dark:text-indigo-300 mb-2 font-outfit">
                 {item.letter}
               </span>
 
-              <div className="w-full aspect-square bg-white dark:bg-[#11162B] rounded-xl p-2 flex items-center justify-center border border-indigo-100/50 dark:border-slate-800 shadow-2xs">
+              <div className="w-full aspect-square shrink-0 bg-white dark:bg-[#11162B] rounded-xl p-2 flex items-center justify-center border border-indigo-100/50 dark:border-slate-800 shadow-2xs">
                 <img
                   src={item.signImagePath}
                   alt={`Sinal da letra ${item.letter} em Libras`}
@@ -80,7 +80,7 @@ export const TrailObserveView: React.FC<TrailObserveViewProps> = ({
               </div>
 
               {item.tip && (
-                <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium text-center mt-2 line-clamp-2" title={item.tip}>
+                <span className="w-full text-[10px] text-slate-500 dark:text-slate-400 font-medium text-center leading-snug break-words mt-2">
                   {item.tip}
                 </span>
               )}
@@ -117,7 +117,7 @@ export const TrailObserveView: React.FC<TrailObserveViewProps> = ({
           <h4 className="text-sm sm:text-base font-black text-slate-900 dark:text-white font-outfit">
             Lumi está com você
           </h4>
-          <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5 line-clamp-2">
+          <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">
             Observe as mãos antes do desafio. Você pode rever as letras quando quiser.
           </p>
           <button

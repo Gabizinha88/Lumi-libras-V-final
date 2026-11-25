@@ -11,7 +11,7 @@ import {
 } from '../../data/librasRecoveredData';
 import { UserStats } from '../../types';
 import { playSound } from '../../utils/sound';
-import { Volume2, Play, ChevronLeft, ChevronRight, X, ExternalLink, Sparkles, Gauge } from 'lucide-react';
+import { Play, ChevronLeft, ChevronRight, X, ExternalLink, Sparkles, Gauge } from 'lucide-react';
 
 interface AlphabetScreenProps {
   stats: UserStats;
@@ -60,13 +60,6 @@ export const AlphabetScreen: React.FC<AlphabetScreenProps> = ({
   const handleNext = () => {
     const nextIndex = (currentIndex + 1) % RECOVERED_ALPHABET_DATA.length;
     handleSelectLetter(RECOVERED_ALPHABET_DATA[nextIndex].letter);
-  };
-
-  const handleSpeak = () => {
-    playSound.speakText(
-      `Letra ${currentItem.letter}. ${currentItem.letter} de ${currentItem.example}.`,
-      stats.soundEnabled
-    );
   };
 
   return (
@@ -200,16 +193,6 @@ export const AlphabetScreen: React.FC<AlphabetScreenProps> = ({
                 </h3>
               </div>
             </div>
-
-            <button
-              type="button"
-              onClick={handleSpeak}
-              className="p-2.5 rounded-xl border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-sky-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors cursor-pointer"
-              title="Ouvir pronúncia"
-              aria-label="Ouvir pronúncia"
-            >
-              <Volume2 className="w-5 h-5" />
-            </button>
           </div>
 
           {/* Pedagogical Note */}
