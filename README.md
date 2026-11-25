@@ -52,6 +52,36 @@ O projeto é publicado automaticamente no **GitHub Pages** por meio do workflow 
 2. A pasta `dist/` gerada é publicada automaticamente no GitHub Pages usando as actions oficiais (`actions/configure-pages`, `actions/upload-pages-artifact` e `actions/deploy-pages`).
 3. A autenticação e o armazenamento de progresso continuam conectados diretamente ao **Firebase Authentication** e **Cloud Firestore** (sem uso de Firebase Hosting).
 
+## Estrutura do Projeto
+
+```text
+├── docs/                       # Documentação técnica e guias de estudo para o TCC
+├── public/                     # Assets públicos (ilustrações das mãos, mascote, fonte Libras-2016)
+├── src/
+│   ├── main.tsx                # Ponto de entrada React
+│   ├── App.tsx                 # Estado global, navegação entre telas e modais
+│   ├── index.css               # Tailwind CSS v4, fonte Libras-2016 e modos de acessibilidade
+│   ├── types/                  # Interfaces e tipos TypeScript
+│   ├── logic/                  # Regras puras de gamificação, trilha, conquistas e semana
+│   ├── services/               # Integração com Firebase Authentication e Cloud Firestore
+│   ├── utils/                  # Autenticação/cache local, formatação de datas e Web Audio
+│   ├── data/                   # Conteúdo pedagógico (trilha, alfabeto, sinais UFV, conquistas, créditos)
+│   └── components/
+│       ├── modals/             # Modais (Auth + subformulários, Acessibilidade, Perfil, Toca aqui, Dicas, Créditos)
+│       └── screens/            # Telas principais (Landing, Home, Trilha, Alfabeto, Sinais, Memória, Conquistas, Fontes)
+├── firestore.rules             # Regras de segurança do Cloud Firestore (users/{uid})
+└── vite.config.ts              # Configuração de build e base do GitHub Pages
+```
+
+## Documentação para Estudo (TCC)
+
+- [Mapa do Código](docs/MAPA_DO_CODIGO.md) — inventário completo dos arquivos, código morto e mapa das regras.
+- [Arquitetura do Sistema](docs/ARQUITETURA.md) — visão geral da SPA, fluxo do clique até o Firestore e diagrama Mermaid.
+- [Guia de Estudo](docs/GUIA_DE_ESTUDO.md) — roteiro priorizado (Essencial / Importante / Saber que existe) para a defesa.
+- [20 Perguntas da Banca](docs/PERGUNTAS_DA_BANCA.md) — perguntas técnicas prováveis com respostas fundamentadas no código.
+- [Como Cada Funcionalidade Funciona](docs/COMO_CADA_FUNCIONALIDADE_FUNCIONA.md) — passo a passo por tela/fluxo com arquivos e funções.
+- [Registro de Renomeações e Extrações](docs/RENOMEACOES.md) — mapeamento de funções e arquivos alterados para atualizar o TCC.
+
 ## Fontes Educacionais e Créditos
 
 - **UFSM / Libras ON (NTE Tube):** vídeo do alfabeto em movimento (CC BY-NC-SA 4.0).
