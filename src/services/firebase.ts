@@ -106,7 +106,6 @@ export async function saveUserToFirestore(user: UserAccount): Promise<void> {
       id: user.id,
       name: user.name,
       email: user.email,
-      role: user.role || 'geral',
       avatar: user.avatar || '🌟',
       createdAt: user.createdAt,
       lastActiveDate: user.lastActiveDate,
@@ -144,7 +143,6 @@ export async function loadUserFromFirestore(userId: string): Promise<UserAccount
       id: data.id || userId,
       name: data.name || 'Aluno Lumi',
       email: data.email || '',
-      role: data.role || 'geral',
       avatar: data.avatar || '🌟',
       createdAt: data.createdAt || new Date().toISOString(),
       lastActiveDate: data.lastActiveDate || new Date().toISOString().split('T')[0],
@@ -187,7 +185,7 @@ export async function signInWithGoogleReal(): Promise<UserAccount> {
       // Primeira vez desse usuário: cria conta limpa com nome e foto reais do Google
       const displayName = firebaseUser.displayName || 'Aventureiro Lumi';
       const email = firebaseUser.email || 'usuario@google.com';
-      existingUser = createInitialUserProgress(displayName, email, 'geral', firebaseUser.uid);
+      existingUser = createInitialUserProgress(displayName, email, firebaseUser.uid);
       
       // Salva no Firestore
       await saveUserToFirestore(existingUser);
@@ -211,9 +209,8 @@ export async function registerWithFirebaseEmail(
   const userCredential = await createUserWithEmailAndPassword(auth, email.trim().toLowerCase(), password);
   const firebaseUser = userCredential.user;
   const newUser = createInitialUserProgress(
-    name.trim() || 'Aventureiro Lumi', 
-    firebaseUser.email || email, 
-    'geral', 
+    name.trim() || 'Aventureiro Lumi',
+    firebaseUser.email || email,
     firebaseUser.uid
   );
   await saveUserToFirestore(newUser);
@@ -232,9 +229,8 @@ export async function loginWithFirebaseEmail(
   let user = await loadUserFromFirestore(firebaseUser.uid);
   if (!user) {
     user = createInitialUserProgress(
-      firebaseUser.displayName || 'Aventureiro Lumi', 
-      firebaseUser.email || email, 
-      'geral', 
+      firebaseUser.displayName || 'Aventureiro Lumi',
+      firebaseUser.email || email,
       firebaseUser.uid
     );
     await saveUserToFirestore(user);

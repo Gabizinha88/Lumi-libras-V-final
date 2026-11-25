@@ -88,7 +88,7 @@ export const CreditsCuriositiesScreen: React.FC<CreditsCuriositiesScreenProps> =
     {
       institution: 'Universidade Tecnológica Federal do Paraná (UTFPR)',
       project: 'Projetos de Inclusão, Acessibilidade e Tecnologias Assistivas',
-      role: 'Diretrizes de usabilidade infantil e acessibilidade digital para pessoas surdas.',
+      role: 'Diretrizes de usabilidade e acessibilidade digital para pessoas surdas.',
       license: 'Projetos acadêmicos de extensão e inclusão',
       url: 'http://www.utfpr.edu.br/',
       tag: 'Acessibilidade & Extensão'

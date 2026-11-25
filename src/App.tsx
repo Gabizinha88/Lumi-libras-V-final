@@ -240,7 +240,7 @@ export default function App() {
   };
 
   const handleExploreAsGuest = () => {
-    const guestUser = createInitialUserProgress('Visitante', '', 'geral', 'guest_session');
+    const guestUser = createInitialUserProgress('Visitante', '', 'guest_session');
     setCurrentUser(guestUser);
     setGuestNoticeShown(false);
     setProgress(extrairProgressoDoUsuario(guestUser));
@@ -309,8 +309,7 @@ export default function App() {
           stats={stats}
           currentUser={{
             name: currentUser.name,
-            avatar: currentUser.avatar,
-            role: currentUser.role
+            avatar: currentUser.avatar
           }}
           onToggleSound={() => atualizarStats((s) => ({ ...s, soundEnabled: !s.soundEnabled }))}
           onToggleDarkMode={handleToggleDarkMode}

@@ -6,13 +6,10 @@
 import { UserStats } from '../types';
 import { getTodayDateString } from './storage';
 
-export type LearnerRole = 'geral' | 'crianca' | 'familia' | 'educador';
-
 export interface UserAccount {
   id: string;
   name: string;
   email: string;
-  role: LearnerRole;
   avatar: string;
   createdAt: string;
   stats: UserStats;
@@ -31,22 +28,17 @@ const CURRENT_SESSION_KEY = 'lumi_libras_active_session_id';
 /**
  * Cria o estado inicial 100% limpo para um novo usuário:
  * Trilha do zero, sem fases prontas, 0 estrelas, 0 streak.
- * Jogo educativo para todos (geral, sem divisão de categoria).
  */
 export const createInitialUserProgress = (
   name: string,
   email: string,
-  role: LearnerRole = 'geral',
   idOverride?: string
 ): UserAccount => {
-  const roleAvatar = role === 'educador' ? '🎓' : role === 'familia' ? '🏡' : role === 'crianca' ? '🧒' : '🌟';
-
   return {
     id: idOverride || `user_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
     name: name.trim() || 'Aventureiro Lumi',
     email: email.trim().toLowerCase(),
-    role: role || 'geral',
-    avatar: roleAvatar,
+    avatar: '🌟',
     createdAt: new Date().toISOString(),
     stats: {
       stars: 0,

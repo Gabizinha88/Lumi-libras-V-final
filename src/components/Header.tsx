@@ -14,7 +14,6 @@ interface HeaderProps {
   currentUser?: {
     name: string;
     avatar: string;
-    role?: string;
   } | null;
   onToggleSound: () => void;
   onToggleDarkMode?: () => void;

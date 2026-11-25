@@ -28,11 +28,10 @@ service cloud.firestore {
     }
 
     function isValidUserProfile(data) {
-      return data.keys().hasAll(['id', 'name', 'email', 'role', 'stats', 'completedTrailNodes'])
+      return data.keys().hasAll(['id', 'name', 'email', 'stats', 'completedTrailNodes'])
         && data.id is string && data.id.size() <= 128
         && data.name is string && data.name.size() <= 100
         && data.email is string && data.email.size() <= 150
-        && data.role in ['geral', 'crianca', 'familia', 'educador']
         && data.stats is map
         && data.completedTrailNodes is list && data.completedTrailNodes.size() <= 50;
     }
