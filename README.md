@@ -1,41 +1,59 @@
 # Lumi Libras
 
-Plataforma web educativa, inclusiva e gratuita para iniciantes na **Língua Brasileira de Sinais (Libras)**, desenvolvida como projeto de Trabalho de Conclusão de Curso (TCC).
+Plataforma web educativa, inclusiva e gratuita para iniciantes na **Língua Brasileira de Sinais (Libras)**, desenvolvida como Trabalho de Conclusão de Curso (TCC).
 
-## Funcionalidades
+**App publicado:** https://gabizinha88.github.io/Lumi-libras-V-final/
 
-- **Trilha de Aprendizado (A–Z):** 9 etapas progressivas de datilologia com observação guiada, dicas e desafios interativos.
-- **Alfabeto Manual:** visualização ampliada das 26 letras com indicação de movimento (`H, J, K, X, Y, Z`), exemplos em português, áudio de apoio e vídeo completo do alfabeto em movimento.
-- **Sinais do Dia a Dia:** 30 sinais organizados em 4 temas (*Cumprimentos*, *Família e amigos*, *Na escola* e *Tempo e rotina*), com vídeos demonstrativos, controle de velocidade (`1x`, `0.75x`, `0.5x`) e registro de prática.
-- **Jogo da Memória:** partidas de 4 ou 6 pares combinando letra e configuração de mão, sem perda de vidas.
-- **Conquistas, Estrelas e Perfil:** acompanhamento de progresso, sequência de treino semanal, níveis por XP e álbum de figurinhas, com autenticação e sincronização no **Firebase (Auth + Firestore)**, além de modo visitante.
-- **Acessibilidade:** modo escuro, alto contraste, ampliação de fonte (`+22%`), controle de áudio e navegação responsiva para celular, tablet e computador.
+## Autoria e Orientação
 
-## Tecnologias Utilizadas
+- **Autores:** Gabriella Oliveira de Souza Dias e Enzo Gabriel Silva Oliveira
+- **Orientadora:** Profa. Kerlla De Souza Luz
+- **Instituição / Curso:** UDF – Ciência da Computação
+
+## Sobre o Projeto
+
+O **Lumi Libras** oferece uma jornada interativa para aprender datilologia e sinais do cotidiano em Libras com foco em clareza visual e acessibilidade:
+
+- **Trilha de Aprendizado (A–Z):** 9 etapas progressivas com observação guiada, dicas e desafios interativos.
+- **Alfabeto Manual:** 26 configurações de mão ampliadas, exemplos em português, marcação de letras com movimento e vídeo do alfabeto em movimento (UFSM).
+- **Sinais do Dia a Dia:** 30 sinais em 4 temas com vídeos demonstrativos (UFV/CEAD), controle de velocidade e registro de prática.
+- **Jogo da Memória:** partidas de 4 ou 6 pares combinando letra e sinal manual, sem perda de vidas.
+- **Conquistas, Estrelas e Perfil:** progresso salvo na nuvem com Firebase Authentication e Cloud Firestore, além do modo visitante.
+- **Acessibilidade:** modo escuro, alto contraste, fonte ampliada (`+22%`), controle de áudio e layout responsivo.
+
+## Tecnologias
 
 - **React 19** + **TypeScript**
 - **Vite**
 - **Tailwind CSS v4**
 - **Firebase** (Authentication e Cloud Firestore)
-- **Lucide React** (ícones)
+- **Lucide React**
 
-## Fontes Educacionais e Créditos
+## Como rodar localmente
 
-- **UFSM / Libras ON (NTE Tube):** vídeo do alfabeto em movimento (Licença CC BY-NC-SA 4.0).
-- **UFV / CEAD:** vídeos demonstrativos do Dicionário Online Libras–Português.
-- **UTFPR / DaFont:** fonte gratuita *Libras 2016* (Diego Aguiar da Silva, Alexandre Nassar de Peder e Ricardo Ernani Sander) utilizada nas imagens do alfabeto manual.
-
-## Como executar localmente
-
-**Pré-requisito:** Node.js 18+
+**Pré-requisito:** Node.js (versão LTS recomendada)
 
 ```bash
-npm install --legacy-peer-deps
+npm install
 npm run dev
 ```
 
-Para gerar a versão de produção:
+Para gerar o build de produção localmente:
 
 ```bash
 npm run build
 ```
+
+## Como o deploy funciona
+
+O projeto é publicado automaticamente no **GitHub Pages** por meio do workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
+
+1. A cada `push` na branch `main` (ou execução manual via *workflow_dispatch*), o GitHub Actions instala as dependências com `npm ci` e executa `npm run build` (com `base: '/Lumi-libras-V-final/'` no `vite.config.ts`).
+2. A pasta `dist/` gerada é publicada automaticamente no GitHub Pages usando as actions oficiais (`actions/configure-pages`, `actions/upload-pages-artifact` e `actions/deploy-pages`).
+3. A autenticação e o armazenamento de progresso continuam conectados diretamente ao **Firebase Authentication** e **Cloud Firestore** (sem uso de Firebase Hosting).
+
+## Fontes Educacionais e Créditos
+
+- **UFSM / Libras ON (NTE Tube):** vídeo do alfabeto em movimento (CC BY-NC-SA 4.0).
+- **UFV / CEAD:** vídeos demonstrativos do Dicionário Online Libras–Português.
+- **UTFPR / DaFont:** fonte gratuita *Libras 2016* (Diego Aguiar da Silva, Alexandre Nassar de Peder e Ricardo Ernani Sander).
