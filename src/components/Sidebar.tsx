@@ -19,7 +19,6 @@ import { playSound } from '../utils/sound';
 interface SidebarProps {
   currentTab: TabType;
   onSelectTab: (tab: TabType) => void;
-  onOpenTipModal?: () => void;
   onOpenAccessibility?: () => void;
   onOpenMediaCredits?: () => void;
   soundEnabled: boolean;

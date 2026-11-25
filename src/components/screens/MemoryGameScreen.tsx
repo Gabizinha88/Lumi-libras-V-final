@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
 import { UserStats } from '../../types';
 import { playSound } from '../../utils/sound';
-import { RotateCcw, Trophy, Sparkles, Check } from 'lucide-react';
+import { RotateCcw } from 'lucide-react';
 import { RECOVERED_ALPHABET_DATA } from '../../data/librasRecoveredData';
 
 interface MemoryGameScreenProps {

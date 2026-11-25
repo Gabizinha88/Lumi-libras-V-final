@@ -1,19 +1,15 @@
 import React from 'react';
-import { 
-  ArrowRight, 
-  Play, 
-  Sparkles, 
-  Check, 
-  Lock, 
-  Gift, 
-  Trophy, 
-  Star, 
-  Flame, 
-  Gamepad2, 
-  BookOpen, 
-  Route, 
-  Lightbulb,
-  WholeWord
+import {
+  ArrowRight,
+  Sparkles,
+  Check,
+  Trophy,
+  Star,
+  Flame,
+  Gamepad2,
+  BookOpen,
+  Route,
+  Lightbulb
 } from 'lucide-react';
 import { LumiMascot } from '../LumiMascot';
 import { TabType, UserStats } from '../../types';
@@ -25,7 +21,6 @@ interface HomeScreenProps {
   completedTrailNodes?: string[];
   hasStartedTrail?: boolean;
   onNavigateTab: (tab: TabType) => void;
-  onOpenLesson: (nodeId?: string) => void;
   onOpenHighFive: () => void;
   onOpenTipModal: () => void;
   onStartExpressGame: () => void;
@@ -36,7 +31,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   completedTrailNodes = [],
   hasStartedTrail = completedTrailNodes.length > 0,
   onNavigateTab,
-  onOpenLesson,
   onOpenHighFive,
   onOpenTipModal,
   onStartExpressGame

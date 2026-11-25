@@ -1,7 +1,7 @@
 import React from 'react';
 import confetti from 'canvas-confetti';
 import { ACHIEVEMENTS_DATA } from '../../data/librasData';
-import { Achievement, UserStats } from '../../types';
+import { UserStats } from '../../types';
 import { Award, Star, Flame, Gift, CheckCircle2, Lock } from 'lucide-react';
 import { playSound } from '../../utils/sound';
 
@@ -10,7 +10,6 @@ interface AchievementsScreenProps {
   completedTrailNodes?: string[];
   unlockedAchievements?: string[];
   unlockedStickers?: string[];
-  onRewardStars: (amount: number) => void;
   onUnlockSticker?: (stickerId: string) => void;
 }
 
@@ -19,7 +18,6 @@ export const AchievementsScreen: React.FC<AchievementsScreenProps> = ({
   completedTrailNodes = ['node-1'],
   unlockedAchievements = ['first-sign'],
   unlockedStickers = ['lumi-star', 'lumi-wave'],
-  onRewardStars,
   onUnlockSticker
 }) => {
   const stickersCollection = [

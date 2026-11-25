@@ -1,30 +1,22 @@
 import React, { useState } from 'react';
-import { 
-  Sparkles, 
-  Globe2, 
-  ScrollText, 
-  Smile, 
-  HelpCircle, 
-  Award, 
-  BookOpen, 
-  ShieldCheck, 
-  ExternalLink, 
-  HeartHandshake,
+import {
+  Sparkles,
+  Globe2,
+  ScrollText,
+  Smile,
+  HelpCircle,
+  ShieldCheck,
+  ExternalLink,
   Layers,
   GraduationCap
 } from 'lucide-react';
-import { UserStats } from '../../types';
 
 interface CreditsCuriositiesScreenProps {
-  stats: UserStats;
   onOpenAccessibility: () => void;
-  onOpenMediaCredits?: () => void;
 }
 
 export const CreditsCuriositiesScreen: React.FC<CreditsCuriositiesScreenProps> = ({
-  stats,
-  onOpenAccessibility,
-  onOpenMediaCredits
+  onOpenAccessibility
 }) => {
   const [activeSection, setActiveSection] = useState<'all' | 'curiosities' | 'sources' | 'parameters'>('all');
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, ShieldCheck, ExternalLink, BookOpen, Heart, Sparkles, Award } from 'lucide-react';
+import { X, ShieldCheck, ExternalLink, Sparkles } from 'lucide-react';
 import { CREDITS_DATA } from '../../data/librasMediaData';
 
 interface MediaCreditsModalProps {

@@ -16,7 +16,6 @@ import { DailySignsScreen } from './components/screens/DailySignsScreen';
 import { MemoryGameScreen } from './components/screens/MemoryGameScreen';
 import { AchievementsScreen } from './components/screens/AchievementsScreen';
 import { CreditsCuriositiesScreen } from './components/screens/CreditsCuriositiesScreen';
-import { LessonModal } from './components/modals/LessonModal';
 import { HighFiveModal } from './components/modals/HighFiveModal';
 import { LumiTipModal } from './components/modals/LumiTipModal';
 import { AccessibilityModal } from './components/modals/AccessibilityModal';
@@ -94,13 +93,9 @@ export default function App() {
     return currentUser ? currentUser.unlockedStickers : [];
   });
 
-  // Active lesson node to open in LessonModal
-  const [activeLessonNodeId, setActiveLessonNodeId] = useState<string>('node-1');
-
   // Modals state
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
   const [authInitialTab, setAuthInitialTab] = useState<'login' | 'register'>('login');
-  const [isLessonOpen, setIsLessonOpen] = useState<boolean>(false);
   const [isHighFiveOpen, setIsHighFiveOpen] = useState<boolean>(false);
   const [isTipOpen, setIsTipOpen] = useState<boolean>(false);
   const [isAccessibilityOpen, setIsAccessibilityOpen] = useState<boolean>(false);
@@ -183,11 +178,6 @@ export default function App() {
     }
   }, [stats.fontSize]);
 
-  // Ensure legacy colorblind-mode class is never stuck on body
-  useEffect(() => {
-    document.body.classList.remove('colorblind-mode');
-  }, []);
-
   // Stop any ongoing speech immediately if user mutes sound
   useEffect(() => {
     if (!stats.soundEnabled) {
@@ -238,17 +228,6 @@ export default function App() {
     });
   };
 
-  const handleOpenLesson = (nodeId?: string) => {
-    if (nodeId) {
-      setActiveLessonNodeId(nodeId);
-      setIsLessonOpen(true);
-    } else {
-      // Abre diretamente a nova Trilha
-      setCurrentTab('trail');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
-
   const handleCompleteTrailStage = (stageId: string, starsReward: number, xpReward: number) => {
     const today = getTodayDateString();
 
@@ -259,39 +238,6 @@ export default function App() {
       return prev;
     });
 
-    setStats((prev) => {
-      const nextStars = prev.stars + starsReward;
-      const nextXp = prev.xp + xpReward;
-      const nextLevel = Math.floor(nextXp / 50) + 1;
-      const streakIncrement = !prev.todayCompleted ? 1 : 0;
-      const existingWeekly = prev.weeklyTrainedDates || [];
-      const updatedWeekly = existingWeekly.includes(today) ? existingWeekly : [...existingWeekly, today];
-
-      return {
-        ...prev,
-        stars: nextStars,
-        xp: nextXp,
-        level: Math.max(prev.level, nextLevel),
-        levelTitle: getLevelTitle(Math.max(prev.level, nextLevel)),
-        todayCompleted: true,
-        streakDays: prev.streakDays + streakIncrement,
-        weeklyTrainedDates: updatedWeekly
-      };
-    });
-  };
-
-  const handleLessonCompleted = (nodeId: string, starsReward: number, xpReward: number) => {
-    const today = getTodayDateString();
-
-    // Unlock node sequentially
-    setCompletedTrailNodes((prev) => {
-      if (!prev.includes(nodeId)) {
-        return [...prev, nodeId];
-      }
-      return prev;
-    });
-
-    // Update stats, streak & XP
     setStats((prev) => {
       const nextStars = prev.stars + starsReward;
       const nextXp = prev.xp + xpReward;
@@ -422,7 +368,6 @@ export default function App() {
           setCurrentTab(tab);
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
-        onOpenTipModal={() => setIsTipOpen(true)}
         onOpenAccessibility={() => setIsAccessibilityOpen(true)}
         onOpenMediaCredits={() => setIsMediaCreditsOpen(true)}
         soundEnabled={stats.soundEnabled}
@@ -469,7 +414,6 @@ export default function App() {
                 setCurrentTab(tab);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              onOpenLesson={handleOpenLesson}
               onOpenHighFive={() => setIsHighFiveOpen(true)}
               onOpenTipModal={() => setIsTipOpen(true)}
               onStartExpressGame={handleStartExpressGame}
@@ -482,7 +426,6 @@ export default function App() {
               userStats={stats}
               soundEnabled={stats.soundEnabled}
               onCompleteStage={handleCompleteTrailStage}
-              onOpenTip={() => setIsTipOpen(true)}
               onNavigateToAlphabet={() => {
                 setCurrentTab('alphabet');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -533,16 +476,13 @@ export default function App() {
               completedTrailNodes={completedTrailNodes}
               unlockedAchievements={unlockedAchievements}
               unlockedStickers={unlockedStickers}
-              onRewardStars={addStars}
               onUnlockSticker={handleUnlockSticker}
             />
           )}
 
           {currentTab === 'credits-curiosities' && (
             <CreditsCuriositiesScreen
-              stats={stats}
               onOpenAccessibility={() => setIsAccessibilityOpen(true)}
-              onOpenMediaCredits={() => setIsMediaCreditsOpen(true)}
             />
           )}
         </main>
@@ -560,14 +500,6 @@ export default function App() {
       </div>
 
       {/* Interactive Modals */}
-      <LessonModal
-        isOpen={isLessonOpen}
-        nodeId={activeLessonNodeId}
-        onClose={() => setIsLessonOpen(false)}
-        onCompleteLesson={handleLessonCompleted}
-        soundEnabled={stats.soundEnabled}
-      />
-
       <HighFiveModal
         isOpen={isHighFiveOpen}
         onClose={() => setIsHighFiveOpen(false)}

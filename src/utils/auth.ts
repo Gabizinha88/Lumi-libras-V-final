@@ -149,27 +149,6 @@ export const loginUser = (
 };
 
 /**
- * Login com Google (Simulação autenticada com conta do usuário)
- */
-export const loginWithGoogle = (
-  defaultName = 'Aluno Lumi',
-  defaultEmail = 'aluno@lumilibras.com'
-): UserAccount => {
-  const accounts = getAllAccounts();
-  let user = accounts.find((u) => u.email === defaultEmail);
-
-  if (!user) {
-    user = createInitialUserProgress(defaultName, defaultEmail, 'geral');
-    user.avatar = '🌟';
-    accounts.push(user);
-    saveAllAccounts(accounts);
-  }
-
-  setCurrentSession(user.id);
-  return user;
-};
-
-/**
  * Obtém a sessão ativa
  */
 export const getCurrentSession = (): UserAccount | null => {

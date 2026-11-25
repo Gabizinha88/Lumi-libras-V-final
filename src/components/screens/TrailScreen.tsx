@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import { 
-  Check, 
-  Lock, 
-  ArrowLeft, 
-  ArrowRight, 
-  Sparkles, 
-  Star, 
-  Trophy, 
-  RotateCcw, 
-  Lightbulb,
+import {
+  Check,
+  Lock,
+  ArrowLeft,
+  ArrowRight,
+  Sparkles,
+  Star,
+  Trophy,
   CheckCircle2,
   XCircle,
-  HelpCircle,
   Award,
   Info
 } from 'lucide-react';
@@ -25,7 +22,6 @@ interface TrailScreenProps {
   userStats: UserStats;
   soundEnabled: boolean;
   onCompleteStage: (stageId: string, rewardStars: number, rewardXp: number) => void;
-  onOpenTip?: () => void;
   onNavigateToAlphabet?: () => void;
   onNavigateToMemoryGame?: () => void;
   shouldShowGuestNotice?: boolean;
@@ -38,7 +34,6 @@ export const TrailScreen: React.FC<TrailScreenProps> = ({
   userStats,
   soundEnabled,
   onCompleteStage,
-  onOpenTip,
   onNavigateToAlphabet,
   onNavigateToMemoryGame,
   shouldShowGuestNotice = false,

@@ -87,52 +87,6 @@ export const playSound = {
     }
   },
 
-  // Card flip sound
-  cardFlip: (enabled = true) => {
-    if (!enabled) return;
-    try {
-      const ctx = getAudioContext();
-      if (!ctx) return;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(300, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(600, ctx.currentTime + 0.06);
-      gain.gain.setValueAtTime(0.12, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.06);
-    } catch {
-      // ignore
-    }
-  },
-
-  // Match success sound
-  matchSuccess: (enabled = true) => {
-    if (!enabled) return;
-    try {
-      const ctx = getAudioContext();
-      if (!ctx) return;
-      const notes = [587.33, 739.99, 880.00]; // D5, F#5, A5
-      notes.forEach((freq, idx) => {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.09);
-        gain.gain.setValueAtTime(0.2, ctx.currentTime + idx * 0.09);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.09 + 0.3);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(ctx.currentTime + idx * 0.09);
-        osc.stop(ctx.currentTime + idx * 0.09 + 0.3);
-      });
-    } catch {
-      // ignore
-    }
-  },
-
   // Correct answer chime
   correct: (enabled = true) => {
     if (!enabled) return;

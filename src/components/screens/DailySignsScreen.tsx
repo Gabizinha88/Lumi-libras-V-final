@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   RECOVERED_SIGN_CATEGORIES,
   RECOVERED_WORDS_DATA,
@@ -7,7 +7,7 @@ import {
 } from '../../data/librasRecoveredData';
 import { UserStats } from '../../types';
 import { playSound } from '../../utils/sound';
-import { X, RotateCcw, ExternalLink, Check, Play, Sparkles } from 'lucide-react';
+import { X, RotateCcw, ExternalLink, Check, Sparkles } from 'lucide-react';
 
 interface DailySignsScreenProps {
   stats: UserStats;

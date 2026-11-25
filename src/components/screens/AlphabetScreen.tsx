@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { 
-  RECOVERED_ALPHABET_DATA, 
+import React, { useState, useRef } from 'react';
+import {
+  RECOVERED_ALPHABET_DATA,
   AlphabetItem,
-  MOTION_LETTERS,
   UFSM_ALPHABET_VIDEO_URL
 } from '../../data/librasRecoveredData';
 import { UserStats } from '../../types';
 import { playSound } from '../../utils/sound';
-import { Volume2, Play, ChevronLeft, ChevronRight, Check, X, ExternalLink, Sparkles, Gauge } from 'lucide-react';
+import { Volume2, Play, ChevronLeft, ChevronRight, X, ExternalLink, Sparkles, Gauge } from 'lucide-react';
 
 interface AlphabetScreenProps {
   stats: UserStats;
