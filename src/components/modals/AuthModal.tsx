@@ -205,12 +205,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             isLoadingGoogle={isLoadingGoogle}
             onEmailChange={setLoginEmail}
             onPasswordChange={setLoginPassword}
-            onFillDemo={() => {
-              if (!loginEmail) {
-                setLoginEmail('aluno@lumilibras.com');
-                setLoginPassword('123456');
-              }
-            }}
             onSubmit={handleLoginSubmit}
             onGoogleAuth={handleGoogleAuth}
             onSwitchToRegister={() => trocarAba('register')}

@@ -1,6 +1,6 @@
 # Registro de Renomeações, Extrações e Mudanças de Caminho — Lumi Libras
 
-> Documento de apoio para manter o texto e os diagramas do TCC sincronizados com o código organizado na branch `refactor/organizacao-tcc`.
+> Documento de apoio para manter o texto e os diagramas do TCC sincronizados com o código organizado na branch `main`.
 
 ---
 

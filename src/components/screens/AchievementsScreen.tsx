@@ -16,14 +16,16 @@ interface AchievementsScreenProps {
   completedTrailNodes?: string[];
   unlockedAchievements?: string[];
   unlockedStickers?: string[];
+  memoryGameWins?: number;
   onUnlockSticker?: (stickerId: string) => void;
 }
 
 export const AchievementsScreen: React.FC<AchievementsScreenProps> = ({
   stats,
-  completedTrailNodes = ['node-1'],
+  completedTrailNodes = [],
   unlockedAchievements = ['first-sign'],
   unlockedStickers = ['lumi-star', 'lumi-wave'],
+  memoryGameWins = 0,
   onUnlockSticker
 }) => {
   const stickersCollection = [
@@ -54,7 +56,8 @@ export const AchievementsScreen: React.FC<AchievementsScreenProps> = ({
     ACHIEVEMENTS_DATA,
     unlockedAchievements,
     completedTrailNodes,
-    stats
+    stats,
+    memoryGameWins
   );
 
   return (

@@ -95,5 +95,5 @@
 - **Onde está:** `vite.config.ts`, `.github/workflows/deploy.yml`.
 
 **20. Quais limitações atuais vocês identificaram e o que fica como trabalho futuro?**
-- **Resposta:** Como o foco foi um MVP acessível sem custos de servidor, podemos citar três evoluções naturais: (1) reconhecer sinais pela webcam usando visão computacional (ex.: MediaPipe Hands); (2) alinhar os critérios dinâmicos de algumas conquistas antigas (como `memory-champion` e IDs `etapa_1`..`etapa_9`) e adicionar validação server-side de streak; (3) aplicar *code-splitting* por tela para reduzir o tamanho do bundle JS inicial.
-- **Onde está:** `src/logic/gamification.ts` (`avaliarConquistas`), `vite.config.ts`.
+- **Resposta:** Como o foco foi um MVP acessível sem custos de servidor, podemos citar três evoluções naturais: (1) reconhecer sinais pela webcam usando visão computacional (ex.: MediaPipe Hands); (2) adicionar validação server-side de sequência diária (streak) no Firebase; (3) aplicar *code-splitting* por tela para reduzir o tamanho do bundle JS inicial.
+- **Onde está:** `src/logic/gamification.ts`, `vite.config.ts`.

@@ -13,6 +13,7 @@ export interface UserProgressState {
   practicedWords: string[];
   unlockedAchievements: string[];
   unlockedStickers: string[];
+  memoryGameWins: number;
 }
 
 export interface WeeklyTrainingDay {
@@ -128,14 +129,18 @@ export function registrarRecompensaDiaria(
 }
 
 /**
- * Registra vitória no Jogo da Memória (+5 estrelas e XP proporcional).
+ * Registra vitória no Jogo da Memória: incrementa memoryGameWins e concede +5 estrelas (+XP proporcional).
  */
 export function registrarVitoriaMemoria(
-  stats: UserStats,
+  progresso: UserProgressState,
   estrelas: number = 5,
   dataHoje: string = getTodayDateString()
-): UserStats {
-  return adicionarEstrelas(stats, estrelas, dataHoje);
+): UserProgressState {
+  return {
+    ...progresso,
+    stats: adicionarEstrelas(progresso.stats, estrelas, dataHoje),
+    memoryGameWins: (progresso.memoryGameWins || 0) + 1
+  };
 }
 
 /**
@@ -190,7 +195,8 @@ export function avaliarConquistas(
   conquistasBase: Achievement[],
   conquistasDesbloqueadas: string[],
   etapasConcluidas: string[],
-  stats: UserStats
+  stats: UserStats,
+  memoryGameWins: number = 0
 ): Achievement[] {
   return conquistasBase.map((item) => {
     let isUnlocked = conquistasDesbloqueadas.includes(item.id);
@@ -198,13 +204,15 @@ export function avaliarConquistas(
     if (item.id === 'first-sign') {
       isUnlocked = isUnlocked || etapasConcluidas.length > 0;
     } else if (item.id === 'alphabet-explorer') {
-      isUnlocked = isUnlocked || (etapasConcluidas.includes('node-1') && etapasConcluidas.includes('node-2'));
+      isUnlocked = isUnlocked || (etapasConcluidas.includes('etapa_1') && etapasConcluidas.includes('etapa_2'));
     } else if (item.id === 'five-day-streak') {
       isUnlocked = isUnlocked || stats.streakDays >= 5;
+    } else if (item.id === 'memory-champion') {
+      isUnlocked = isUnlocked || memoryGameWins >= 1;
     } else if (item.id === 'friendly-hands') {
-      isUnlocked = isUnlocked || (etapasConcluidas.includes('node-3') && etapasConcluidas.includes('node-4'));
+      isUnlocked = isUnlocked || (etapasConcluidas.includes('etapa_3') && etapasConcluidas.includes('etapa_4'));
     } else if (item.id === 'lumi-best-friend') {
-      isUnlocked = isUnlocked || etapasConcluidas.includes('node-5');
+      isUnlocked = isUnlocked || etapasConcluidas.includes('etapa_5');
     }
 
     return {

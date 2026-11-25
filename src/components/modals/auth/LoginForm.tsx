@@ -1,5 +1,5 @@
 /**
- * O que este arquivo faz: exibe o formulário de login (e-mail, senha, botão de autopreenchimento demo e login Google).
+ * O que este arquivo faz: exibe o formulário de login (e-mail, senha, botão de entrada, login Google e link para cadastro).
  * Quem usa: AuthModal.tsx.
  */
 import React from 'react';
@@ -11,7 +11,6 @@ interface LoginFormProps {
   isLoadingGoogle: boolean;
   onEmailChange: (value: string) => void;
   onPasswordChange: (value: string) => void;
-  onFillDemo: () => void;
   onSubmit: (e: React.FormEvent) => void;
   onGoogleAuth: () => void;
   onSwitchToRegister: () => void;
@@ -23,7 +22,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   isLoadingGoogle,
   onEmailChange,
   onPasswordChange,
-  onFillDemo,
   onSubmit,
   onGoogleAuth,
   onSwitchToRegister
@@ -55,18 +53,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({
         </div>
 
         <div>
-          <div className="flex items-center justify-between mb-1.5">
-            <label className="block text-xs font-black text-slate-600 dark:text-slate-300 uppercase tracking-wider">
-              Senha
-            </label>
-            <button
-              type="button"
-              onClick={onFillDemo}
-              className="text-[11px] font-black text-[#2952E3] hover:underline uppercase cursor-pointer"
-            >
-              Auto-preencher demo
-            </button>
-          </div>
+          <label className="block text-xs font-black text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            Senha
+          </label>
           <input
             type="password"
             required

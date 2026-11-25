@@ -63,7 +63,8 @@ function extrairProgressoDoUsuario(user: UserAccount | null): UserProgressState 
       seenAlphabetLetters: ['A'],
       practicedWords: [],
       unlockedAchievements: [],
-      unlockedStickers: []
+      unlockedStickers: [],
+      memoryGameWins: 0
     };
   }
 
@@ -73,7 +74,8 @@ function extrairProgressoDoUsuario(user: UserAccount | null): UserProgressState 
     seenAlphabetLetters: user.seenAlphabetLetters || ['A'],
     practicedWords: user.practicedWords || [],
     unlockedAchievements: user.unlockedAchievements || [],
-    unlockedStickers: user.unlockedStickers || []
+    unlockedStickers: user.unlockedStickers || [],
+    memoryGameWins: user.memoryGameWins || 0
   };
 }
 
@@ -106,7 +108,7 @@ export default function App() {
     mediaCredits: false
   });
 
-  const { stats, completedTrailNodes, seenAlphabetLetters, practicedWords, unlockedAchievements, unlockedStickers } = progress;
+  const { stats, completedTrailNodes, seenAlphabetLetters, practicedWords, unlockedAchievements, unlockedStickers, memoryGameWins } = progress;
 
   const abrirModal = (nome: keyof Omit<ModalState, 'authInitialTab'>, aberto = true) => {
     setModals((prev) => ({ ...prev, [nome]: aberto }));
@@ -182,10 +184,7 @@ export default function App() {
   };
 
   const handleMemoryVictory = (amount: number) => {
-    setProgress((prev) => ({
-      ...prev,
-      stats: registrarVitoriaMemoria(prev.stats, amount)
-    }));
+    setProgress((prev) => registrarVitoriaMemoria(prev, amount));
   };
 
   const handleCompleteTrailStage = (stageId: string, starsReward: number, xpReward: number) => {
@@ -392,6 +391,7 @@ export default function App() {
               completedTrailNodes={completedTrailNodes}
               unlockedAchievements={unlockedAchievements}
               unlockedStickers={unlockedStickers}
+              memoryGameWins={memoryGameWins}
               onUnlockSticker={handleUnlockSticker}
             />
           )}

@@ -1,7 +1,7 @@
 # Mapa do Código — Lumi Libras (Etapa 1)
 
 > **Data do levantamento:** 24/11/2026  
-> **Branch:** `refactor/organizacao-tcc`  
+> **Branch:** `main`  
 > **Status:** Análise somente leitura (nenhum arquivo de `src/` foi alterado nesta etapa)  
 > **Total atual em `src/`:** 35 arquivos · 9.500 linhas
 
@@ -158,7 +158,7 @@ Na versão anterior do app, a trilha usava 6 nós (`node-1` até `node-6`) abert
    - Modal legado (hoje inalcançável) que misturava passos de lição, vídeo, quiz, baú de recompensas e desafio final.
 
 5. **`src/components/modals/AuthModal.tsx` (437 linhas)**
-   - Mistura orquestração de autenticação (Firebase Auth + fallback localStorage + Google OAuth) com o JSX completo dos dois formulários (Login e Cadastro) e o botão de autopreenchimento demo.
+   - Mistura orquestração de autenticação (Firebase Auth + fallback localStorage + Google OAuth) com o JSX completo dos dois formulários (Login e Cadastro).
 
 ---
 
@@ -169,7 +169,7 @@ Na versão anterior do app, a trilha usava 6 nós (`node-1` até `node-6`) abert
 | **Cálculo de estrelas, XP e nível** | `src/App.tsx:198-314` (duplicado em 4 handlers) · `src/utils/storage.ts:51-58` (`getLevelTitle`) · `src/components/Header.tsx:41-45` · `src/components/modals/ProfileModal.tsx:23-27` | Ao ganhar estrelas genéricas (`addStars` ou `handleHighFiveReward`): `xp += amount * 5`. Na trilha (`handleCompleteTrailStage`): soma `starsReward` e `xpReward` da etapa. Fórmula do nível: `Math.floor(nextXp / 50) + 1`, nunca diminui (`Math.max(prev.level, nextLevel)`). Título do nível vem de `getLevelTitle(level)`. |
 | **Sequência de dias (`streakDays`) e treino semanal** | `src/App.tsx:252-281` (`handleCompleteTrailStage`) · `src/App.tsx:198-239` (`weeklyTrainedDates`) · `src/components/screens/HomeScreen.tsx:60-109` | Ao concluir etapa da trilha pela primeira vez no dia (`!prev.todayCompleted`), soma `+1` em `streakDays` e marca `todayCompleted = true`. Todas as ações de recompensa adicionam `YYYY-MM-DD` em `weeklyTrainedDates`. A Home calcula segunda a domingo da semana atual e nunca marca dias futuros. |
 | **Recompensa diária ("Toca aqui!" / High Five)** | `src/components/modals/HighFiveModal.tsx:22-38` · `src/App.tsx:198-218` e `L569` · `src/components/screens/HomeScreen.tsx:108-109` | Compara `stats.lastHighFiveDate === getTodayDateString()`. Se ainda não resgatou hoje, concede `+3` estrelas (`+15 XP`) e grava `lastHighFiveDate = hoje`. |
-| **Desbloqueio de conquistas e figurinhas** | `src/components/screens/AchievementsScreen.tsx:34-68` · `src/App.tsx:316-323` (`handleUnlockSticker`) | **Figurinhas:** libera quando `stats.stars >= requiredStars` e salva ID em `unlockedStickers`. **Conquistas:** avaliadas dinamicamente em `evaluatedAchievements` (obs.: ainda checa IDs legados `node-1`..`node-5` para 3 conquistas — mantido sem alterar comportamento por regra de escopo). |
+| **Desbloqueio de conquistas e figurinhas** | `src/logic/gamification.ts` (`avaliarConquistas`) · `src/components/screens/AchievementsScreen.tsx` · `src/App.tsx` (`handleUnlockSticker`) | **Figurinhas:** libera quando `stats.stars >= requiredStars` e salva ID em `unlockedStickers`. **Conquistas:** avaliadas dinamicamente em `avaliarConquistas` usando `etapa_1`..`etapa_5`, `streakDays >= 5` e `memoryGameWins >= 1`. |
 | **Liberação das etapas da trilha** | `src/components/screens/TrailScreen.tsx:62-67` (`isStageUnlocked`) | A Etapa 1 (`index === 0`) é sempre livre. A Etapa `N` só abre se o ID da Etapa `N-1` estiver em `completedTrailNodes`. |
 | **Validação das respostas do quiz** | `src/components/screens/TrailScreen.tsx:91-124` (`handleSelectOption`) | Verifica `isCorrect` da opção escolhida em `ALPHABET_TRAIL_STAGES`. Se acertar, toca som + confete e avança após `1100 ms` (ou chama `triggerStageCelebration` na última pergunta). Se errar, marca `'wrong'` e toca som de erro, permitindo nova tentativa. |
 | **Salvamento no Firestore e `localStorage`** | `src/App.tsx:124-155` · `src/utils/auth.ts:200-215` (`syncUserProgress`) · `src/services/firebase.ts:92-120` (`saveUserToFirestore`) · `firestore.rules:46-65` | Sempre que o progresso muda, o `useEffect` grava no `localStorage` (`syncUserProgress`) e, se o usuário tiver UID real do Firebase (`id.length > 20 && !id.startsWith('user_')`), grava em `users/{uid}` no Firestore. As regras garantem que apenas o próprio dono (`request.auth.uid == userId`) lê e escreve. |
