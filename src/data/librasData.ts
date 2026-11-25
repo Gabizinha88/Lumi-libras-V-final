@@ -17,7 +17,7 @@ export const ACHIEVEMENTS_DATA: Achievement[] = [
   {
     id: 'alphabet-explorer',
     title: 'Explorador do Alfabeto',
-    description: 'Aprendeu as primeiras 6 letras (A até F) com precisão.',
+    description: 'Concluiu as duas primeiras etapas da trilha: as vogais e as primeiras consoantes.',
     icon: '🔤',
     unlocked: true,
     rewardStars: 10
@@ -42,7 +42,7 @@ export const ACHIEVEMENTS_DATA: Achievement[] = [
   {
     id: 'friendly-hands',
     title: 'Mãos Amigas',
-    description: 'Completou a unidade de Cumprimentos e Expressões faciais.',
+    description: 'Concluiu as etapas 3 e 4 da trilha, dominando as posições de dedos.',
     icon: '🤝',
     unlocked: false,
     rewardStars: 25,
@@ -51,7 +51,7 @@ export const ACHIEVEMENTS_DATA: Achievement[] = [
   {
     id: 'lumi-best-friend',
     title: 'Melhor Amigo do Lumi',
-    description: 'Abriu o Baú Mágico e deu mais de 10 "Toca aqui!" no Lumi.',
+    description: 'Chegou até o fim da etapa 5 da trilha com o Lumi.',
     icon: '🌟',
     unlocked: false,
     rewardStars: 30,
