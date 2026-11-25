@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: contém o acervo ativo das 26 letras do alfabeto manual (com marcação de movimento)
+ * e dos 30 sinais do cotidiano em vídeo (acervo UFV/CEAD) organizados por categoria.
+ * Quem usa: AlphabetScreen.tsx, DailySignsScreen.tsx e MemoryGameScreen.tsx.
+ */
 export interface AlphabetItem {
   letter: string;
   example: string;

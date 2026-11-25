@@ -1,3 +1,7 @@
+/**
+ * O que este arquivo faz: modal de perfil do aprendiz com nome, e-mail, nível atual, barra de XP, estrelas e logout.
+ * Quem usa: App.tsx (aberto pelo avatar no Header).
+ */
 import React from 'react';
 import { X, Star, Flame, Sparkles, LogOut, UserCheck } from 'lucide-react';
 import { UserStats } from '../../types';

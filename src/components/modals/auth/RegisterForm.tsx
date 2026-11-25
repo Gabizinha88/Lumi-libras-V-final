@@ -1,3 +1,7 @@
+/**
+ * O que este arquivo faz: exibe o formulário de cadastro de nova conta com nome, e-mail e senha.
+ * Quem usa: AuthModal.tsx.
+ */
 import React from 'react';
 import { Sparkles } from 'lucide-react';
 

@@ -1,7 +1,13 @@
-// Sound effects using Web Audio API and Speech Synthesis for Libras learning
+/**
+ * O que este arquivo faz: sintetiza efeitos sonoros leves via Web Audio API (sem precisar baixar arquivos MP3)
+ * e cancela qualquer leitura por voz da Web Speech API para manter a comunicação 100% visual.
+ * Quem usa: App.tsx, Header, Sidebar, BottomCompanionBar, telas e modais interativos.
+ */
 
 let audioCtx: AudioContext | null = null;
 
+// Por quê: navegadores modernos bloqueiam áudio até a primeira interação do usuário;
+// por isso o AudioContext é criado sob demanda e reativado (resume) quando está suspenso.
 function getAudioContext(): AudioContext | null {
   if (typeof window === 'undefined') return null;
   if (!audioCtx) {
@@ -170,7 +176,8 @@ export const playSound = {
     }
   },
 
-  // Speech narration disabled per user request - Lumi communicates visually
+  // Por quê: a narração por voz foi desativada para priorizar a experiência visual-espacial da Libras;
+  // manter o cancelamento garante que nenhum navegador inicie fala residual.
   speakText: (_text?: string, _enabled = true) => {
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       try {

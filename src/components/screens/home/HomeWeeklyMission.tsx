@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: exibe o cartão lateral de Missão da Semana (Seg–Dom) com dias treinados
+ * e o cartão do desafio rápido "Jogo da Memória Express".
+ * Quem usa: HomeScreen.tsx.
+ */
 import React from 'react';
 import { Check, Flame, Gamepad2, Star, Trophy } from 'lucide-react';
 import { WeeklyTrainingDay } from '../../../logic/gamification';

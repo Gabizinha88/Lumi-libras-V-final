@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: gerencia contas, sessão ativa e progresso inicial no localStorage
+ * (usado como cache local, modo visitante e fallback caso a autenticação em nuvem esteja indisponível).
+ * Quem usa: App.tsx, AuthModal.tsx, ProfileModal.tsx e services/firebase.ts.
+ */
 import { UserStats } from '../types';
 import { getTodayDateString } from './storage';
 

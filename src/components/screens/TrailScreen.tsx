@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: tela da Trilha de Aprendizado (9 etapas A–Z); coordena o mapa sequencial,
+ * o modo de observação das mãos, o quiz interativo com confete e o modal de celebração.
+ * Quem usa: App.tsx (quando currentTab === 'trail').
+ */
 import React, { useState } from 'react';
 import { Award, Check, Lock, Sparkles, Star, Trophy } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -65,6 +70,8 @@ export const TrailScreen: React.FC<TrailScreenProps> = ({
   };
 
   const handleSelectStage = (stage: TrailAlphabetStage, index: number) => {
+    // Por quê: a trilha é progressiva — impede pular etapas para garantir que o aluno veja
+    // os sinais anteriores antes de avançar para combinações mais complexas.
     if (!estaEtapaLiberada(index, completedStages, ALPHABET_TRAIL_STAGES)) {
       playSound.error(soundEnabled);
       return;
@@ -118,6 +125,8 @@ export const TrailScreen: React.FC<TrailScreenProps> = ({
         // Confetti fallback
       }
 
+      // Por quê: aguarda 1,1s antes de passar para a próxima pergunta para o aprendiz ver
+      // o destaque verde e o confete (reforço visual imediato), sem precisar clicar em "Próximo".
       setTimeout(() => {
         if (!activeStage) return;
         if (currentQuestionIndex + 1 < activeStage.questions.length) {

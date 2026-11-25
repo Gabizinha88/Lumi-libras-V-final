@@ -1,3 +1,7 @@
+/**
+ * O que este arquivo faz: modal que lista as instituições, autores e licenças das imagens, vídeos e fonte usados no projeto.
+ * Quem usa: App.tsx (aberto pelo Header ou pela Sidebar).
+ */
 import React from 'react';
 import { X, ShieldCheck, ExternalLink, Sparkles } from 'lucide-react';
 import { CREDITS_DATA } from '../../data/librasMediaData';

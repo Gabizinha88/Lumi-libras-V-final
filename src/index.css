@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: folha de estilos global (Tailwind CSS v4, fonte Libras-2016,
+ * modo escuro, alto contraste, ampliação de fonte e animações da interface).
+ * Quem usa: src/main.tsx.
+ */
 @import "tailwindcss";
 
 @font-face {

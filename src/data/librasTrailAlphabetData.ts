@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: define as 9 etapas sequenciais da Trilha de Aprendizado (etapa_1 até etapa_9),
+ * com letras, ilustrações de mão, perguntas de quiz e recompensas de estrelas/XP.
+ * Quem usa: TrailScreen.tsx e HomeScreen.tsx.
+ */
 import { TrailAlphabetStage } from '../types';
 
 export const ALPHABET_TRAIL_STAGES: TrailAlphabetStage[] = [

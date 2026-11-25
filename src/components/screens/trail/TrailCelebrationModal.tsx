@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: exibe o modal de celebração ao concluir uma etapa da trilha,
+ * mostrando estrelas/XP ganhos, aviso opcional para visitantes e botão para avançar.
+ * Quem usa: TrailScreen.tsx.
+ */
 import React from 'react';
 import { ArrowRight, Check, Info, Sparkles, Star } from 'lucide-react';
 import { TrailAlphabetStage } from '../../../types';

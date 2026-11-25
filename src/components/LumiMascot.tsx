@@ -1,3 +1,7 @@
+/**
+ * O que este arquivo faz: componente reutilizável que renderiza o mascote Lumi em tamanhos e animações padronizadas.
+ * Quem usa: HomeHeroBanner.tsx, BottomCompanionBar.tsx, HighFiveModal.tsx e LumiTipModal.tsx.
+ */
 import React from 'react';
 
 interface LumiMascotProps {

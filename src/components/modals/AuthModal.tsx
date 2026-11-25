@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: modal de autenticação que coordena login/cadastro por e-mail e login com Google
+ * via Firebase Auth, mantendo fallback em localStorage caso o provedor de e-mail esteja indisponível.
+ * Quem usa: App.tsx.
+ */
 import React, { useEffect, useState } from 'react';
 import { AlertCircle, CheckCircle2, X } from 'lucide-react';
 import { autenticar, cadastrar, signInWithGoogleReal } from '../../services/firebase';

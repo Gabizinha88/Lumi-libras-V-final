@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: exibe a barra fixa inferior com o mascote Lumi oferecendo dicas rápidas
+ * e um botão de atalho para iniciar ou continuar a trilha de aprendizado.
+ * Quem usa: App.tsx.
+ */
 import React, { useEffect, useId, useRef, useState } from 'react';
 import { LumiMascot } from './LumiMascot';
 import { ArrowRight, Lightbulb, X } from 'lucide-react';

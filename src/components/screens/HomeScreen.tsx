@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: tela inicial (painel do aprendiz) que compõe o banner da Lumi,
+ * os cards de descoberta, o resumo da trilha, a missão semanal e os banners informativos.
+ * Quem usa: App.tsx (quando currentTab === 'home').
+ */
 import React from 'react';
 import { ArrowRight, BookOpen, Lightbulb, Star } from 'lucide-react';
 import { ALPHABET_TRAIL_STAGES } from '../../data/librasTrailAlphabetData';

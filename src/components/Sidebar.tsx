@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: renderiza o menu lateral de navegação entre as 7 telas do app
+ * (versão recolhível em desktop e gaveta deslizante em celular), além dos botões de acessibilidade, créditos e sair.
+ * Quem usa: App.tsx.
+ */
 import React from 'react';
 import { 
   Home, 

@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: armazena o catálogo de conquistas gamificadas (ACHIEVEMENTS_DATA)
+ * e as dicas pedagógicas exibidas pelo mascote Lumi (LUMI_TIPS).
+ * Quem usa: AchievementsScreen.tsx e LumiTipModal.tsx.
+ */
 import { Achievement } from '../types';
 
 export const ACHIEVEMENTS_DATA: Achievement[] = [

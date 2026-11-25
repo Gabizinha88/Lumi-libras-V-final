@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: biblioteca de 30 sinais do cotidiano em vídeo (acervo UFV/CEAD),
+ * filtráveis por categoria, com controle de velocidade (0.5x/0.75x/1x) e marcação de sinal praticado.
+ * Quem usa: App.tsx (quando currentTab === 'daily-signs').
+ */
 import React, { useState, useRef } from 'react';
 import {
   RECOVERED_SIGN_CATEGORIES,

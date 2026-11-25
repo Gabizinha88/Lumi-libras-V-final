@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: página inicial pública exibida antes do login, apresentando o Lumi Libras
+ * e oferecendo entrada por conta, cadastro grátis, modo visitante e botão de acessibilidade.
+ * Quem usa: App.tsx (quando currentUser é nulo).
+ */
 import React from 'react';
 import { Accessibility, Sparkles } from 'lucide-react';
 

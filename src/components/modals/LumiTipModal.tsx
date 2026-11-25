@@ -1,3 +1,7 @@
+/**
+ * O que este arquivo faz: modal de dicas pedagógicas da Lumi sobre postura, espaço de sinalização e expressão facial.
+ * Quem usa: App.tsx (aberto pela Home e pela barra inferior do mascote).
+ */
 import React, { useState, useEffect } from 'react';
 import { X, Lightbulb, ChevronRight, ChevronLeft } from 'lucide-react';
 import { LumiMascot } from '../LumiMascot';

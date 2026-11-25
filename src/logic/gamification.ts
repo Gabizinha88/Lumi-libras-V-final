@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: concentra todas as regras puras de gamificação e negócio do Lumi Libras
+ * (estrelas, XP, nível, sequência de dias, recompensa diária, trilha sequencial, conquistas e semana de treino).
+ * Quem usa: App.tsx, TrailScreen.tsx, HomeScreen.tsx e AchievementsScreen.tsx.
+ */
 import { Achievement, TrailAlphabetStage, UserStats } from '../types';
 import { getLocalDateString, getTodayDateString, getLevelTitle } from '../utils/storage';
 
@@ -45,7 +50,8 @@ function registrarDataTreinada(datasExistentes: string[] | undefined, dataHoje: 
 
 /**
  * Recalcula o nível e o título do aprendiz a partir do XP total.
- * O nível nunca diminui (usa Math.max com o nível atual).
+ * Por quê: a progressão é linear (1 nível a cada 50 XP) e usa Math.max para impedir
+ * que o aprendiz regrida de nível caso algum dado legado traga nível superior.
  */
 export function atualizarNivel(stats: UserStats, novoXp: number): Pick<UserStats, 'level' | 'levelTitle'> {
   const nivelCalculado = Math.floor(novoXp / XP_POR_NIVEL) + 1;
@@ -74,6 +80,7 @@ export function adicionarXP(stats: UserStats, xpGanho: number): UserStats {
 
 /**
  * Atualiza a sequência de dias (streak): soma +1 apenas na primeira conclusão do dia.
+ * Por quê: evita inflar a sequência caso o aluno conclua várias etapas no mesmo dia.
  */
 export function atualizarSequenciaDias(stats: UserStats, dataHoje: string = getTodayDateString()): UserStats {
   const streakIncrement = !stats.todayCompleted ? 1 : 0;

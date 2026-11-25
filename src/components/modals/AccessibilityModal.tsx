@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: modal de preferências de acessibilidade (modo escuro, alto contraste,
+ * fonte ampliada em +22% e ativação/desativação dos efeitos sonoros).
+ * Quem usa: App.tsx (acessível na Landing, Header, Sidebar e tela de Fontes/Curiosidades).
+ */
 import React from 'react';
 import { X, Eye, Volume2, Type, Moon, Sun } from 'lucide-react';
 import { UserStats } from '../../types';

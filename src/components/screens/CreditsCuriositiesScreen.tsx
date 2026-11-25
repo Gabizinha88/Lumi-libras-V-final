@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: tela "Fontes e Curiosidades" com fatos culturais sobre Libras,
+ * os 5 parâmetros fonológicos da língua de sinais, leis de inclusão e referências acadêmicas.
+ * Quem usa: App.tsx (quando currentTab === 'credits-curiosities').
+ */
 import React, { useState } from 'react';
 import {
   Sparkles,

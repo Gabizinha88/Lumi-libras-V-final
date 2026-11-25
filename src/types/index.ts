@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: centraliza as interfaces e tipos TypeScript compartilhados
+ * (abas de navegação, estatísticas do usuário, etapas da trilha e conquistas).
+ * Quem usa: App.tsx, telas, modais, lógica de gamificação e arquivos de dados.
+ */
 export type TabType =
   | 'home'
   | 'trail'

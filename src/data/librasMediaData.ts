@@ -1,3 +1,7 @@
+/**
+ * O que este arquivo faz: armazena os créditos institucionais e licenças das fontes de mídia (UFSM, UFV/CEAD e UTFPR).
+ * Quem usa: MediaCreditsModal.tsx.
+ */
 export const CREDITS_DATA = [
   {
     institution: 'Universidade Federal de Santa Maria (UFSM)',

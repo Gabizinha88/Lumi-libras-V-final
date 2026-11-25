@@ -1,3 +1,7 @@
+/**
+ * O que este arquivo faz: exibe o formulário de login (e-mail, senha, botão de autopreenchimento demo e login Google).
+ * Quem usa: AuthModal.tsx.
+ */
 import React from 'react';
 import { Loader2 } from 'lucide-react';
 

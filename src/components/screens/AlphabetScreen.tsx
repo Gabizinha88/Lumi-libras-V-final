@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: tela do Alfabeto em Libras (A–Z) com seleção interativa de letras,
+ * destaque para letras com movimento (H, J, K, X, Y, Z) e vídeo demonstrativo com controle de velocidade.
+ * Quem usa: App.tsx (quando currentTab === 'alphabet').
+ */
 import React, { useState, useRef } from 'react';
 import {
   RECOVERED_ALPHABET_DATA,

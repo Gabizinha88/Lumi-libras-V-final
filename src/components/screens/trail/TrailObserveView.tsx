@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: exibe o Passo 1 de uma etapa da trilha ("1. OBSERVE AS MÃOS"),
+ * mostrando cada letra e sua configuração de mão antes do quiz.
+ * Quem usa: TrailScreen.tsx.
+ */
 import React from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { TrailAlphabetStage } from '../../../types';

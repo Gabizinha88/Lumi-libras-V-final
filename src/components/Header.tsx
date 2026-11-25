@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: renderiza o cabeçalho fixo superior com estatísticas do aprendiz
+ * (estrelas, sequência, nível/XP), atalhos de acessibilidade, alternador de tema escuro e acesso ao perfil.
+ * Quem usa: App.tsx.
+ */
 import React, { useEffect, useId, useState } from 'react';
 import { Star, Flame, Volume2, VolumeX, Accessibility, Moon, Sun, ShieldCheck, Menu } from 'lucide-react';
 import { UserStats } from '../types';

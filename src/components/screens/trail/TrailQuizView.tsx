@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: exibe o Passo 2 de uma etapa da trilha ("2. ENCONTRE A MÃO"),
+ * apresentando a letra-alvo e 3 opções de sinais em Libras com feedback visual imediato.
+ * Quem usa: TrailScreen.tsx.
+ */
 import React from 'react';
 import { ArrowLeft, Check, CheckCircle2, XCircle } from 'lucide-react';
 import { TrailAlphabetStage } from '../../../types';

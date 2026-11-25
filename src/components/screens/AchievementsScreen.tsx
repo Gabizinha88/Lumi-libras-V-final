@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: exibe a galeria de conquistas desbloqueadas e o álbum de figurinhas da Lumi
+ * liberáveis conforme o total de estrelas conquistadas pelo aprendiz.
+ * Quem usa: App.tsx (quando currentTab === 'achievements').
+ */
 import React from 'react';
 import confetti from 'canvas-confetti';
 import { ACHIEVEMENTS_DATA } from '../../data/librasData';

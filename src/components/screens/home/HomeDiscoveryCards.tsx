@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: exibe a grade de 4 cartões de acesso rápido às áreas principais
+ * (Trilha, Alfabeto, Sinais do Dia a Dia e Jogo da Memória).
+ * Quem usa: HomeScreen.tsx.
+ */
 import React from 'react';
 import { ArrowRight, Gamepad2, Route, Sparkles } from 'lucide-react';
 import { TabType } from '../../../types';

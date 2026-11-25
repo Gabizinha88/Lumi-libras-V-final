@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: renderiza o banner azul principal da Home com o mascote Lumi,
+ * botão de continuar/iniciar a trilha e o botão da recompensa diária "Toca aqui!".
+ * Quem usa: HomeScreen.tsx.
+ */
 import React from 'react';
 import { ArrowRight, Check, Sparkles } from 'lucide-react';
 import { LumiMascot } from '../../LumiMascot';

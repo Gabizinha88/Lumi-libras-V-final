@@ -1,6 +1,10 @@
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
+ *
+ * O que este arquivo faz: componente raiz (sumário do app) que gerencia sessão do usuário,
+ * estado global de progresso, navegação entre telas, preferências de acessibilidade e modais.
+ * Quem usa: src/main.tsx.
  */
 
 import React, { useEffect, useState } from 'react';
@@ -129,10 +133,11 @@ export default function App() {
   useEffect(() => {
     if (!currentUser) return;
 
-    // Salva localmente no navegador (suporte offline e contas locais)
+    // Por quê: salvamos sempre no localStorage primeiro para garantir resposta imediata e funcionamento offline.
     syncUserProgress(currentUser.id, progress);
 
-    // Sincroniza na nuvem (Firestore) apenas para contas autenticadas no Firebase (UID > 20 caracteres)
+    // Por quê: contas locais/visitante usam IDs curtos ('guest_session' ou 'user_...');
+    // apenas UIDs reais do Firebase Auth (> 20 caracteres) têm permissão nas regras do Firestore (users/{uid}).
     if (currentUser.id.length > 20 && !currentUser.id.startsWith('user_')) {
       salvarProgresso({ ...currentUser, ...progress }).catch((err) => {
         console.warn('Sincronização Firestore ignorada:', err);

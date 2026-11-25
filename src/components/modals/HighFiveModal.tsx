@@ -1,3 +1,7 @@
+/**
+ * O que este arquivo faz: modal interativo da recompensa diária "Toca aqui!" com o Lumi (+3 estrelas uma vez ao dia).
+ * Quem usa: App.tsx (aberto a partir do banner da Home).
+ */
 import React, { useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { LumiMascot } from '../LumiMascot';

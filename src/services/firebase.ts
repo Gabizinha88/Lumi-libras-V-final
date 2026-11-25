@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: inicializa Firebase Auth e Cloud Firestore e implementa cadastro,
+ * autenticação (e-mail/senha e Google), leitura/gravação do progresso em users/{uid} e logout.
+ * Quem usa: App.tsx e AuthModal.tsx.
+ */
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import {
   getAuth,
@@ -88,7 +93,8 @@ testConnection();
  * Salva ou atualiza os dados completos do usuário no Firestore
  */
 export async function saveUserToFirestore(user: UserAccount): Promise<void> {
-  // Somente grava no Firestore se o usuário estiver autenticado no Firebase com este UID
+  // Por quê: as regras do Firestore (firestore.rules) só autorizam escrita quando request.auth.uid == userId.
+  // Verificar isso antes evita chamadas rejeitadas para visitantes ou contas locais.
   if (!auth.currentUser || auth.currentUser.uid !== user.id) {
     return;
   }

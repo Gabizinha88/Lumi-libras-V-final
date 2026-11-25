@@ -1,3 +1,8 @@
+/**
+ * O que este arquivo faz: implementa o Jogo da Memória em Libras (pareamento entre letra escrita e sinal de mão),
+ * com escolha de quantidade de pares, contagem de jogadas e recompensa de +5 estrelas na vitória.
+ * Quem usa: App.tsx (quando currentTab === 'memory-game').
+ */
 import React, { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
 import { UserStats } from '../../types';
@@ -35,7 +40,8 @@ export const MemoryGameScreen: React.FC<MemoryGameScreenProps> = ({
 
   const flipTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Available non-motion letters for easier pairing
+  // Por quê: filtramos apenas letras estáticas (!isMotion) porque cartas estáticas de imagem
+  // não representam o traçado de movimento de H, J, K, X, Y e Z, evitando confusão pedagógica.
   const availableLetters = RECOVERED_ALPHABET_DATA
     .filter((item) => !item.isMotion)
     .map((item) => item.letter);
