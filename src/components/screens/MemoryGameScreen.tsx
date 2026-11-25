@@ -59,9 +59,9 @@ export const MemoryGameScreen: React.FC<MemoryGameScreenProps> = ({
     // Preload sign images immediately to prevent delay or blank cards
     chosenLetters.forEach((letter) => {
       const img1 = new Image();
-      img1.src = `/assets/signs/${letter}.png`;
+      img1.src = `./assets/signs/${letter}.png`;
       const img2 = new Image();
-      img2.src = `/signs/${letter}.png`;
+      img2.src = `./signs/${letter}.png`;
     });
 
     // Create 2 cards per letter: one with text letter, one with hand sign
@@ -293,9 +293,9 @@ export const MemoryGameScreen: React.FC<MemoryGameScreenProps> = ({
                       ) : (
                         <div className="w-full h-full flex items-center justify-center p-1">
                           <img
-                            src={`/assets/signs/${card.letter}.png`}
+                            src={`./assets/signs/${card.letter}.png`}
                             onError={(e) => {
-                              (e.currentTarget as HTMLImageElement).src = `/signs/${card.letter}.png`;
+                              (e.currentTarget as HTMLImageElement).src = `./signs/${card.letter}.png`;
                             }}
                             alt={`Sinal da letra ${card.letter}`}
                             className="w-full h-full object-contain filter dark:invert"
