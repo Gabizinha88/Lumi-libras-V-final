@@ -9,7 +9,7 @@
 - **Passo a passo:**
   1. Quando `currentUser` é `null`, o `App.tsx` renderiza a `LandingScreen`.
   2. Ao clicar em **Entrar** ou **Criar conta**, abre o `AuthModal` na aba correspondente.
-  3. **E-mail/Senha:** `handleLoginSubmit` chama `autenticar()` (Firebase Auth) e `handleRegisterSubmit` chama `cadastrar()`. Se o Firebase responder, o perfil é carregado/criado em `users/{uid}` e salvo no cache local (`saveAccount`). Em caso de indisponibilidade do provedor de e-mail, usa `loginUser`/`registerUser` no `localStorage`.
+  3. **E-mail/Senha:** `handleLoginSubmit` chama `autenticar()` (Firebase Auth) e `handleRegisterSubmit` valida a senha mínima de 6 caracteres e chama `cadastrar()` (Firebase Auth). O perfil é carregado/criado em `users/{uid}` e salvo no cache local (`saveAccount`). Qualquer erro do Firebase é traduzido para mensagens claras em português (`obterMensagemErroFirebase`).
   4. **Google:** `handleGoogleAuth` chama `signInWithGoogleReal()`, abre o popup OAuth do Google, carrega `users/{uid}` (ou cria um documento limpo na primeira vez) e autentica o aluno.
   5. **Visitante:** `handleExploreAsGuest` no `App.tsx` cria um perfil temporário com ID `guest_session` (sem gravação na nuvem).
   6. **Logout:** `handleLogout` chama `logoutUser()` (limpa sessão local) e `encerrarSessao()` (desloga do Firebase) e volta para a `LandingScreen`.

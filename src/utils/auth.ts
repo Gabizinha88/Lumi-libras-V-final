@@ -1,6 +1,6 @@
 /**
- * O que este arquivo faz: gerencia contas, sessão ativa e progresso inicial no localStorage
- * (usado como cache local, modo visitante e fallback caso a autenticação em nuvem esteja indisponível).
+ * O que este arquivo faz: gerencia o cache local da sessão ativa e o progresso inicial no localStorage
+ * (usado para cache imediato de contas autenticadas no Firebase e para o modo visitante).
  * Quem usa: App.tsx, AuthModal.tsx, ProfileModal.tsx e services/firebase.ts.
  */
 import { UserStats } from '../types';
@@ -12,7 +12,6 @@ export interface UserAccount {
   id: string;
   name: string;
   email: string;
-  passwordHash?: string;
   role: LearnerRole;
   avatar: string;
   createdAt: string;
@@ -95,62 +94,6 @@ export const saveAllAccounts = (accounts: UserAccount[]): void => {
   } catch (err) {
     console.error('Erro ao salvar contas:', err);
   }
-};
-
-/**
- * Registra um novo usuário com trilha inicial limpa
- */
-export const registerUser = (
-  name: string,
-  email: string,
-  password: string,
-  role: LearnerRole = 'geral'
-): { success: boolean; error?: string; user?: UserAccount } => {
-  const cleanEmail = email.trim().toLowerCase();
-  if (!cleanEmail || !name.trim()) {
-    return { success: false, error: 'Por favor, preencha nome e e-mail.' };
-  }
-  if (!password || password.length < 4) {
-    return { success: false, error: 'A senha deve ter pelo menos 4 caracteres.' };
-  }
-
-  const accounts = getAllAccounts();
-  const existing = accounts.find((u) => u.email === cleanEmail);
-  if (existing) {
-    return { success: false, error: 'Este e-mail já está cadastrado. Faça login!' };
-  }
-
-  const newUser = createInitialUserProgress(name, cleanEmail, role);
-  newUser.passwordHash = btoa(password); // Codificação básica de senha local
-
-  accounts.push(newUser);
-  saveAllAccounts(accounts);
-  setCurrentSession(newUser.id);
-
-  return { success: true, user: newUser };
-};
-
-/**
- * Realiza login por e-mail e senha
- */
-export const loginUser = (
-  email: string,
-  password: string
-): { success: boolean; error?: string; user?: UserAccount } => {
-  const cleanEmail = email.trim().toLowerCase();
-  const accounts = getAllAccounts();
-
-  const user = accounts.find((u) => u.email === cleanEmail);
-  if (!user) {
-    return { success: false, error: 'Conta não encontrada com este e-mail. Crie uma conta grátis!' };
-  }
-
-  if (user.passwordHash && user.passwordHash !== btoa(password)) {
-    return { success: false, error: 'Senha incorreta. Tente novamente.' };
-  }
-
-  setCurrentSession(user.id);
-  return { success: true, user };
 };
 
 /**

@@ -13,7 +13,7 @@ O **Lumi Libras** é uma **SPA (Single Page Application)** — ou seja, uma apli
 - Para **autenticação** (criar conta, entrar com e-mail/senha ou Google) e **banco de dados na nuvem**, o app usa o **Firebase** (modelo *BaaS — Backend as a Service*):
   - **Firebase Authentication:** gerencia login, cadastro e identidade (`uid`).
   - **Cloud Firestore:** guarda o documento de progresso de cada aluno na coleção `users/{uid}`.
-  - **localStorage do navegador:** funciona como cache instantâneo, guarda contas locais de fallback e mantém a sessão rápida.
+  - **localStorage do navegador:** funciona como cache local imediato e mantém a sessão rápida de usuários autenticados.
 
 ---
 
@@ -97,11 +97,10 @@ Cada usuário tem **um único documento** identificado pelo seu `uid` do Firebas
 }
 ```
 
-### Três modos de acesso
+### Dois modos de acesso
 | Modo | Onde salva | Quando usar |
 |---|---|---|
-| **Conta Firebase (E-mail/Senha ou Google)** | `localStorage` + **Cloud Firestore** (`users/{uid}`) | Uso real: progresso sincronizado em qualquer dispositivo. |
-| **Conta local (fallback)** | Apenas `localStorage` | Caso o provedor de e-mail do Firebase não esteja disponível. |
+| **Conta Firebase (E-mail/Senha ou Google)** | `localStorage` (cache) + **Cloud Firestore** (`users/{uid}`) | Uso real: progresso sincronizado em qualquer dispositivo. |
 | **Visitante (`guest_session`)** | Apenas em memória durante a sessão | Experimentação sem cadastro; ao concluir uma etapa, o app avisa para criar conta. |
 
 ---

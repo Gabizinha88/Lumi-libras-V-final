@@ -41,9 +41,9 @@
 
 ## Nível 2 — IMPORTANTE (precisa entender bem a lógica)
 
-### 5. Autenticação híbrida e modo visitante (`src/components/modals/AuthModal.tsx` e `src/utils/auth.ts`)
-- **Onde olhar:** `src/components/modals/AuthModal.tsx` (linhas 50–130) e `src/utils/auth.ts` (linhas 35–75 e 170–215).
-- **O que entender:** O `AuthModal` tenta autenticar/cadastrar no Firebase primeiro; se houver indisponibilidade no provedor de e-mail, faz fallback para `localStorage`. Já o modo visitante cria uma conta temporária `guest_session` em memória (não grava no Firestore) e exibe um aviso amigável após a primeira etapa concluída.
+### 5. Autenticação Firebase e modo visitante (`src/components/modals/AuthModal.tsx` e `src/utils/auth.ts`)
+- **Onde olhar:** `src/components/modals/AuthModal.tsx` (linhas 15–135) e `src/utils/auth.ts` (linhas 35–75 e 100–165).
+- **O que entender:** O `AuthModal` autentica e cadastra exclusivamente via Firebase Authentication (e-mail/senha ou Google), traduzindo todos os códigos de erro do Firebase para mensagens claras em português (`obterMensagemErroFirebase`) e gravando o cache local da sessão em `localStorage`. Já o modo visitante cria uma conta temporária `guest_session` em memória (não grava no Firestore) e exibe um aviso amigável após a primeira etapa concluída.
 - **Exemplo de pergunta da banca:** *"O que acontece se alguém usar o app sem criar conta?"*
   - **Como responder:** *"O modo visitante instancia um perfil limpo com ID `guest_session`. Como o `App.tsx` só sincroniza no Firestore contas com UID real do Firebase, o visitante explora todo o app sem gravar dados no banco e recebe um convite para criar conta ao concluir uma etapa."*
 

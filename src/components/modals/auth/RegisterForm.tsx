@@ -73,9 +73,10 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
           <input
             type="password"
             required
+            minLength={6}
             value={password}
             onChange={(e) => onPasswordChange(e.target.value)}
-            placeholder="Mínimo 4 caracteres"
+            placeholder="Mínimo 6 caracteres"
             className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 text-sm font-bold text-slate-700 dark:text-slate-100 placeholder-slate-400 focus:bg-white dark:focus:bg-slate-900 focus:outline-none focus:border-[#2952E3] focus:ring-0 transition-colors"
           />
         </div>

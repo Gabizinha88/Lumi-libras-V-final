@@ -1,14 +1,50 @@
 /**
  * O que este arquivo faz: modal de autenticação que coordena login/cadastro por e-mail e login com Google
- * via Firebase Auth, mantendo fallback em localStorage caso o provedor de e-mail esteja indisponível.
+ * exclusivamente via Firebase Authentication, exibindo mensagens claras em português.
  * Quem usa: App.tsx.
  */
 import React, { useEffect, useState } from 'react';
 import { AlertCircle, CheckCircle2, X } from 'lucide-react';
 import { autenticar, cadastrar, signInWithGoogleReal } from '../../services/firebase';
-import { loginUser, registerUser, saveAccount, UserAccount } from '../../utils/auth';
+import { saveAccount, UserAccount } from '../../utils/auth';
 import { LoginForm } from './auth/LoginForm';
 import { RegisterForm } from './auth/RegisterForm';
+
+function obterMensagemErroFirebase(err: unknown): string {
+  const codigo =
+    typeof err === 'object' && err !== null && 'code' in err
+      ? String((err as { code?: unknown }).code || '')
+      : '';
+  const mensagem = err instanceof Error ? err.message : String(err);
+  const referencia = codigo || mensagem;
+
+  if (referencia.includes('auth/email-already-in-use')) {
+    return 'Este e-mail já está cadastrado. Faça login.';
+  }
+  if (referencia.includes('auth/weak-password')) {
+    return 'A senha precisa ter pelo menos 6 caracteres.';
+  }
+  if (referencia.includes('auth/invalid-email')) {
+    return 'E-mail inválido.';
+  }
+  if (
+    referencia.includes('auth/invalid-credential') ||
+    referencia.includes('auth/wrong-password') ||
+    referencia.includes('auth/user-not-found')
+  ) {
+    return 'E-mail ou senha incorretos.';
+  }
+  if (referencia.includes('auth/operation-not-allowed')) {
+    return 'Cadastro por e-mail indisponível no momento.';
+  }
+  if (referencia.includes('auth/network-request-failed')) {
+    return 'Sem conexão. Verifique a internet.';
+  }
+  if (referencia.includes('auth/too-many-requests')) {
+    return 'Muitas tentativas. Aguarde um pouco.';
+  }
+  return 'Não foi possível concluir. Tente novamente.';
+}
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -61,15 +97,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({
       const fbUser = await autenticar(loginEmail, loginPassword);
       saveAccount(fbUser);
       concluirAcesso(fbUser, `Bem-vindo de volta, ${fbUser.name}!`, 400);
-      return;
-    } catch {
-      // Fallback para login em contas locais salvas no navegador
-      const res = loginUser(loginEmail, loginPassword);
-      if (!res.success || !res.user) {
-        setErrorMessage(res.error || 'Conta não encontrada ou senha incorreta.');
-        return;
-      }
-      concluirAcesso(res.user, `Bem-vindo de volta, ${res.user.name}!`, 400);
+    } catch (err: unknown) {
+      setErrorMessage(obterMensagemErroFirebase(err));
     }
   };
 
@@ -77,25 +106,17 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     e.preventDefault();
     setErrorMessage(null);
 
+    if (registerPassword.length < 6) {
+      setErrorMessage('A senha precisa ter pelo menos 6 caracteres.');
+      return;
+    }
+
     try {
       const fbUser = await cadastrar(registerName, registerEmail, registerPassword);
       saveAccount(fbUser);
       concluirAcesso(fbUser, `Conta criada no Firebase! Bem-vindo, ${fbUser.name}!`, 450);
-      return;
-    } catch (fbErr: unknown) {
-      const msg = fbErr instanceof Error ? fbErr.message : String(fbErr);
-      if (msg.includes('email-already-in-use')) {
-        setErrorMessage('Este e-mail já está cadastrado no Firebase. Faça login!');
-        return;
-      }
-
-      // Fallback para cadastro local
-      const res = registerUser(registerName, registerEmail, registerPassword, 'geral');
-      if (!res.success || !res.user) {
-        setErrorMessage(res.error || 'Erro ao cadastrar.');
-        return;
-      }
-      concluirAcesso(res.user, `Conta criada! Bem-vindo, ${res.user.name}!`, 450);
+    } catch (err: unknown) {
+      setErrorMessage(obterMensagemErroFirebase(err));
     }
   };
 

@@ -28,7 +28,7 @@ Legenda de importância:
 | Arquivo | Linhas | O que faz | Quem usa | Importância |
 |---|---:|---|---|---|
 | `src/services/firebase.ts` | 249 | Inicializa Firebase Auth e Firestore e implementa cadastro/login por e-mail, login com Google, leitura/gravação em `users/{uid}` e logout. | `App.tsx`, `AuthModal.tsx` | Essencial |
-| `src/utils/auth.ts` | 237 | Gerencia contas/sessão local no `localStorage` (fallback offline e modo visitante), estrutura `UserAccount` e criação de progresso inicial. | `App.tsx`, `AuthModal.tsx`, `ProfileModal.tsx`, `firebase.ts` | Essencial |
+| `src/utils/auth.ts` | 165 | Gerencia o cache local da sessão ativa no `localStorage`, o modo visitante, a estrutura `UserAccount` e a criação de progresso inicial. | `App.tsx`, `AuthModal.tsx`, `ProfileModal.tsx`, `firebase.ts` | Essencial |
 | `src/utils/storage.ts` | 131 | Fornece datas locais (`getTodayDateString`) e títulos por nível (`getLevelTitle`), além de um sistema antigo de `localStorage` não mais usado. | `App.tsx`, `Header.tsx`, `auth.ts` | Essencial |
 | `src/utils/sound.ts` | 229 | Gera efeitos sonoros via Web Audio API (pop, acerto, erro, estrela, celebração) e desativa narração por voz (`speechSynthesis.cancel`). | `App.tsx` e quase todas as telas/modais | Importante |
 
@@ -61,7 +61,7 @@ Legenda de importância:
 
 | Arquivo | Linhas | O que faz | Quem usa | Importância |
 |---|---:|---|---|---|
-| `src/components/modals/AuthModal.tsx` | 437 | Modal de login e cadastro (e-mail/senha via Firebase com fallback local + botão Google). | `App.tsx` | Essencial |
+| `src/components/modals/AuthModal.tsx` | 250 | Modal de login e cadastro exclusivamente via Firebase Authentication (e-mail/senha + botão Google) com mensagens de erro em português. | `App.tsx` | Essencial |
 | `src/components/modals/AccessibilityModal.tsx` | 179 | Modal de configurações de acessibilidade: modo escuro, alto contraste, fonte ampliada e sons. | `App.tsx` | Importante |
 | `src/components/modals/ProfileModal.tsx` | 144 | Modal de perfil do aluno exibindo nome, e-mail, nível, barra de XP, estrelas, etapas concluídas e botão de logout. | `App.tsx` | Importante |
 | `src/components/modals/HighFiveModal.tsx` | 112 | Modal da recompensa diária "Toca aqui!" que concede +3 estrelas (+15 XP) uma vez por dia. | `App.tsx` | Importante |
@@ -157,8 +157,8 @@ Na versão anterior do app, a trilha usava 6 nós (`node-1` até `node-6`) abert
 4. **`src/components/modals/LessonModal.tsx` (545 linhas)**
    - Modal legado (hoje inalcançável) que misturava passos de lição, vídeo, quiz, baú de recompensas e desafio final.
 
-5. **`src/components/modals/AuthModal.tsx` (437 linhas)**
-   - Mistura orquestração de autenticação (Firebase Auth + fallback localStorage + Google OAuth) com o JSX completo dos dois formulários (Login e Cadastro).
+5. **`src/components/modals/AuthModal.tsx`**
+   - Orquestrava autenticação (Firebase Auth + Google OAuth) junto com o JSX completo dos dois formulários (Login e Cadastro) — hoje modularizado em `auth/LoginForm.tsx` e `auth/RegisterForm.tsx`.
 
 ---
 
@@ -173,7 +173,7 @@ Na versão anterior do app, a trilha usava 6 nós (`node-1` até `node-6`) abert
 | **Liberação das etapas da trilha** | `src/components/screens/TrailScreen.tsx:62-67` (`isStageUnlocked`) | A Etapa 1 (`index === 0`) é sempre livre. A Etapa `N` só abre se o ID da Etapa `N-1` estiver em `completedTrailNodes`. |
 | **Validação das respostas do quiz** | `src/components/screens/TrailScreen.tsx:91-124` (`handleSelectOption`) | Verifica `isCorrect` da opção escolhida em `ALPHABET_TRAIL_STAGES`. Se acertar, toca som + confete e avança após `1100 ms` (ou chama `triggerStageCelebration` na última pergunta). Se errar, marca `'wrong'` e toca som de erro, permitindo nova tentativa. |
 | **Salvamento no Firestore e `localStorage`** | `src/App.tsx:124-155` · `src/utils/auth.ts:200-215` (`syncUserProgress`) · `src/services/firebase.ts:92-120` (`saveUserToFirestore`) · `firestore.rules:46-65` | Sempre que o progresso muda, o `useEffect` grava no `localStorage` (`syncUserProgress`) e, se o usuário tiver UID real do Firebase (`id.length > 20 && !id.startsWith('user_')`), grava em `users/{uid}` no Firestore. As regras garantem que apenas o próprio dono (`request.auth.uid == userId`) lê e escreve. |
-| **Login, cadastro, visitante e logout** | `src/components/modals/AuthModal.tsx:43-130` · `src/services/firebase.ts:122-249` · `src/utils/auth.ts:81-237` · `src/App.tsx:335-362` | Login/cadastro por e-mail tentam Firebase Auth primeiro e usam `localStorage` como fallback. Login Google usa `signInWithPopup` do Firebase. Modo visitante cria conta temporária `guest_session` (sem nuvem). Logout limpa sessão local e chama `signOutFirebase()`. |
+| **Login, cadastro, visitante e logout** | `src/components/modals/AuthModal.tsx` · `src/services/firebase.ts` · `src/utils/auth.ts` · `src/App.tsx` | Login e cadastro por e-mail usam exclusivamente Firebase Auth (com mensagens de erro traduzidas em português e senha mínima de 6 caracteres). Login Google usa `signInWithPopup` do Firebase. Modo visitante cria conta temporária `guest_session` (sem nuvem). Logout limpa cache de sessão local e chama `encerrarSessao()`. |
 
 ---
 

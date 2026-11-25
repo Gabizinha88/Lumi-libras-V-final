@@ -47,7 +47,7 @@
 - **Onde está:** `src/App.tsx` (`handleExploreAsGuest` e `useEffect` de sincronização), `src/components/screens/trail/TrailCelebrationModal.tsx`.
 
 **10. Por que o sistema salva no `localStorage` além do Firestore?**
-- **Resposta:** O `localStorage` funciona como cache local imediato (reabre a sessão sem demora) e garante uma camada de fallback caso o usuário perca conexão ou o provedor de e-mail não responda no momento do teste.
+- **Resposta:** O `localStorage` funciona apenas como cache local imediato da sessão já autenticada no Firebase (reabre a tela principal sem atraso ao recarregar o navegador). Toda criação de conta e validação de senha acontecem exclusivamente no Firebase Authentication.
 - **Onde está:** `src/utils/auth.ts` (`syncUserProgress`, `getCurrentSession`), `src/App.tsx`.
 
 ---
