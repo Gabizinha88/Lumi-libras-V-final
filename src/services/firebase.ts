@@ -1,10 +1,9 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
-import { 
-  getAuth, 
-  signInWithPopup, 
-  GoogleAuthProvider, 
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
   signOut as firebaseSignOut,
-  onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   User as FirebaseUser
@@ -247,3 +246,10 @@ export async function signOutFirebase(): Promise<void> {
     console.error('Erro ao deslogar do Firebase:', err);
   }
 }
+
+// Aliases alinhados ao diagrama de classes do TCC
+export const salvarProgresso = saveUserToFirestore;
+export const carregarProgresso = loadUserFromFirestore;
+export const cadastrar = registerWithFirebaseEmail;
+export const autenticar = loginWithFirebaseEmail;
+export const encerrarSessao = signOutFirebase;

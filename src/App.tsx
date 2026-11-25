@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
-import { TabType, UserStats } from './types';
+import React, { useEffect, useState } from 'react';
+import { TabType } from './types';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 import { BottomCompanionBar } from './components/BottomCompanionBar';
@@ -22,26 +22,67 @@ import { AccessibilityModal } from './components/modals/AccessibilityModal';
 import { ProfileModal } from './components/modals/ProfileModal';
 import { MediaCreditsModal } from './components/modals/MediaCreditsModal';
 import { AuthModal } from './components/modals/AuthModal';
-import { playSound } from './utils/sound';
-import { 
-  getTodayDateString, 
-  getLevelTitle 
-} from './utils/storage';
+import {
+  DEFAULT_USER_STATS,
+  UserProgressState,
+  adicionarEstrelas,
+  concluirEtapa,
+  registrarRecompensaDiaria,
+  registrarVitoriaMemoria
+} from './logic/gamification';
+import { encerrarSessao, salvarProgresso } from './services/firebase';
 import {
   UserAccount,
+  createInitialUserProgress,
   getCurrentSession,
-  syncUserProgress,
   logoutUser,
-  createInitialUserProgress
+  syncUserProgress
 } from './utils/auth';
-import { saveUserToFirestore, signOutFirebase } from './services/firebase';
+import { playSound } from './utils/sound';
+import { getTodayDateString } from './utils/storage';
+
+interface ModalState {
+  auth: boolean;
+  authInitialTab: 'login' | 'register';
+  highFive: boolean;
+  tip: boolean;
+  accessibility: boolean;
+  profile: boolean;
+  mediaCredits: boolean;
+}
+
+function extrairProgressoDoUsuario(user: UserAccount | null): UserProgressState {
+  if (!user) {
+    return {
+      stats: DEFAULT_USER_STATS,
+      completedTrailNodes: [],
+      seenAlphabetLetters: ['A'],
+      practicedWords: [],
+      unlockedAchievements: [],
+      unlockedStickers: []
+    };
+  }
+
+  return {
+    stats: user.stats,
+    completedTrailNodes: user.completedTrailNodes || [],
+    seenAlphabetLetters: user.seenAlphabetLetters || ['A'],
+    practicedWords: user.practicedWords || [],
+    unlockedAchievements: user.unlockedAchievements || [],
+    unlockedStickers: user.unlockedStickers || []
+  };
+}
 
 export default function App() {
-  // Current authenticated user session
+  // 1. Sessão e progresso do usuário (agrupados em um único objeto de estado)
   const [currentUser, setCurrentUser] = useState<UserAccount | null>(() => getCurrentSession());
+  const [progress, setProgress] = useState<UserProgressState>(() => extrairProgressoDoUsuario(currentUser));
 
+  // 2. Navegação e layout
   const [currentTab, setCurrentTab] = useState<TabType>('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const [guestNoticeShown, setGuestNoticeShown] = useState<boolean>(false);
+  const [memoryGameInitialMode, setMemoryGameInitialMode] = useState<'express' | 'normal' | 'master'>('normal');
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(() => {
     try {
       return localStorage.getItem('lumilibras_sidebar_collapsed') === 'true';
@@ -50,221 +91,121 @@ export default function App() {
     }
   });
 
-  const handleToggleDesktopSidebar = () => {
-    setIsSidebarCollapsed((prev) => {
-      const next = !prev;
-      try {
-        localStorage.setItem('lumilibras_sidebar_collapsed', String(next));
-      } catch {}
-      return next;
-    });
+  // 3. Estado dos modais (agrupados para fácil leitura)
+  const [modals, setModals] = useState<ModalState>({
+    auth: false,
+    authInitialTab: 'login',
+    highFive: false,
+    tip: false,
+    accessibility: false,
+    profile: false,
+    mediaCredits: false
+  });
+
+  const { stats, completedTrailNodes, seenAlphabetLetters, practicedWords, unlockedAchievements, unlockedStickers } = progress;
+
+  const abrirModal = (nome: keyof Omit<ModalState, 'authInitialTab'>, aberto = true) => {
+    setModals((prev) => ({ ...prev, [nome]: aberto }));
   };
 
-  // Active user data (fallback to default clean state if not logged in)
-  const [stats, setStats] = useState<UserStats>(() => {
-    if (currentUser) return currentUser.stats;
-    return {
-      stars: 0,
-      streakDays: 0,
-      xp: 0,
-      level: 1,
-      levelTitle: 'Lumi Aprendiz',
-      todayCompleted: false,
-      soundEnabled: true,
-      highContrast: false,
-      darkMode: false,
-      fontSize: 'normal'
-    };
-  });
+  const abrirAuthModal = (abaInicial: 'login' | 'register') => {
+    setModals((prev) => ({ ...prev, auth: true, authInitialTab: abaInicial }));
+  };
 
-  const [completedTrailNodes, setCompletedTrailNodes] = useState<string[]>(() => {
-    return currentUser ? currentUser.completedTrailNodes : [];
-  });
-  const [seenAlphabetLetters, setSeenAlphabetLetters] = useState<string[]>(() => {
-    return currentUser?.seenAlphabetLetters || ['A'];
-  });
-  const [practicedWords, setPracticedWords] = useState<string[]>(() => {
-    return currentUser?.practicedWords || [];
-  });
-  const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>(() => {
-    return currentUser ? currentUser.unlockedAchievements : [];
-  });
-  const [unlockedStickers, setUnlockedStickers] = useState<string[]>(() => {
-    return currentUser ? currentUser.unlockedStickers : [];
-  });
+  const navegarParaAba = (tab: TabType) => {
+    setCurrentTab(tab);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-  // Modals state
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
-  const [authInitialTab, setAuthInitialTab] = useState<'login' | 'register'>('login');
-  const [isHighFiveOpen, setIsHighFiveOpen] = useState<boolean>(false);
-  const [isTipOpen, setIsTipOpen] = useState<boolean>(false);
-  const [isAccessibilityOpen, setIsAccessibilityOpen] = useState<boolean>(false);
-  const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
-  const [isMediaCreditsOpen, setIsMediaCreditsOpen] = useState<boolean>(false);
-  const [guestNoticeShown, setGuestNoticeShown] = useState<boolean>(false);
-  const [memoryGameInitialMode, setMemoryGameInitialMode] = useState<'express' | 'normal' | 'master'>('normal');
-
-  // Sync state whenever active currentUser changes
+  // =========================================================
+  // EFEITOS: sincronização de progresso e preferências visuais
+  // =========================================================
   useEffect(() => {
     if (currentUser) {
-      setStats(currentUser.stats);
-      setCompletedTrailNodes(currentUser.completedTrailNodes || []);
-      setSeenAlphabetLetters(currentUser.seenAlphabetLetters || ['A']);
-      setPracticedWords(currentUser.practicedWords || []);
-      setUnlockedAchievements(currentUser.unlockedAchievements || []);
-      setUnlockedStickers(currentUser.unlockedStickers || []);
+      setProgress(extrairProgressoDoUsuario(currentUser));
     }
   }, [currentUser?.id]);
 
-  // Sync to persistent auth storage & Firestore on any gameplay progress
   useEffect(() => {
-    if (currentUser) {
-      const updates = {
-        stats,
-        completedTrailNodes,
-        seenAlphabetLetters,
-        practicedWords,
-        unlockedAchievements,
-        unlockedStickers
-      };
-      syncUserProgress(currentUser.id, updates);
+    if (!currentUser) return;
 
-      // Sincroniza em nuvem no Firestore se for conta autenticada no Firebase
-      if (currentUser.id.length > 20 && !currentUser.id.startsWith('user_')) {
-        saveUserToFirestore({
-          ...currentUser,
-          ...updates
-        }).catch((err) => {
-          console.warn('Sincronização Firestore ignorada:', err);
-        });
-      }
+    // Salva localmente no navegador (suporte offline e contas locais)
+    syncUserProgress(currentUser.id, progress);
+
+    // Sincroniza na nuvem (Firestore) apenas para contas autenticadas no Firebase (UID > 20 caracteres)
+    if (currentUser.id.length > 20 && !currentUser.id.startsWith('user_')) {
+      salvarProgresso({ ...currentUser, ...progress }).catch((err) => {
+        console.warn('Sincronização Firestore ignorada:', err);
+      });
     }
-  }, [
-    currentUser?.id, 
-    stats, 
-    completedTrailNodes, 
-    seenAlphabetLetters, 
-    practicedWords, 
-    unlockedAchievements, 
-    unlockedStickers
-  ]);
+  }, [currentUser?.id, progress]);
 
-  // Handle dark mode class on html and body
   useEffect(() => {
-    if (stats.darkMode) {
-      document.documentElement.classList.add('dark');
-      document.body.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      document.body.classList.remove('dark');
-    }
+    document.documentElement.classList.toggle('dark', stats.darkMode);
+    document.body.classList.toggle('dark', stats.darkMode);
   }, [stats.darkMode]);
 
-  // Handle high contrast mode class
   useEffect(() => {
-    if (stats.highContrast) {
-      document.body.classList.add('high-contrast');
-    } else {
-      document.body.classList.remove('high-contrast');
-    }
+    document.body.classList.toggle('high-contrast', stats.highContrast);
   }, [stats.highContrast]);
 
-  // Handle root font size scaling (+22%)
   useEffect(() => {
-    if (stats.fontSize === 'large') {
-      document.documentElement.classList.add('font-size-large');
-    } else {
-      document.documentElement.classList.remove('font-size-large');
-    }
+    document.documentElement.classList.toggle('font-size-large', stats.fontSize === 'large');
   }, [stats.fontSize]);
 
-  // Stop any ongoing speech immediately if user mutes sound
   useEffect(() => {
     if (!stats.soundEnabled) {
       playSound.stopSpeaking();
     }
   }, [stats.soundEnabled]);
 
+  // =========================================================
+  // AÇÕES DE GAMIFICAÇÃO (regras puras em src/logic/gamification.ts)
+  // =========================================================
   const handleHighFiveReward = (amount: number) => {
-    const today = getTodayDateString();
-    setStats((prev) => {
-      const nextStars = prev.stars + amount;
-      const nextXp = prev.xp + amount * 5;
-      const nextLevel = Math.floor(nextXp / 50) + 1;
-      const existingWeekly = prev.weeklyTrainedDates || [];
-      const updatedWeekly = existingWeekly.includes(today) ? existingWeekly : [...existingWeekly, today];
-
-      return {
-        ...prev,
-        stars: nextStars,
-        xp: nextXp,
-        level: Math.max(prev.level, nextLevel),
-        levelTitle: getLevelTitle(Math.max(prev.level, nextLevel)),
-        todayCompleted: true,
-        lastHighFiveDate: today,
-        weeklyTrainedDates: updatedWeekly
-      };
-    });
+    setProgress((prev) => ({
+      ...prev,
+      stats: registrarRecompensaDiaria(prev.stats, amount)
+    }));
   };
 
-  const addStars = (amount: number) => {
-    const today = getTodayDateString();
-    setStats((prev) => {
-      const nextStars = prev.stars + amount;
-      const nextXp = prev.xp + amount * 5;
-      const nextLevel = Math.floor(nextXp / 50) + 1;
-      const existingWeekly = prev.weeklyTrainedDates || [];
-      const updatedWeekly = existingWeekly.includes(today) ? existingWeekly : [...existingWeekly, today];
+  const handleRewardStars = (amount: number) => {
+    setProgress((prev) => ({
+      ...prev,
+      stats: adicionarEstrelas(prev.stats, amount)
+    }));
+  };
 
-      return {
-        ...prev,
-        stars: nextStars,
-        xp: nextXp,
-        level: Math.max(prev.level, nextLevel),
-        levelTitle: getLevelTitle(Math.max(prev.level, nextLevel)),
-        todayCompleted: true,
-        weeklyTrainedDates: updatedWeekly
-      };
-    });
+  const handleMemoryVictory = (amount: number) => {
+    setProgress((prev) => ({
+      ...prev,
+      stats: registrarVitoriaMemoria(prev.stats, amount)
+    }));
   };
 
   const handleCompleteTrailStage = (stageId: string, starsReward: number, xpReward: number) => {
-    const today = getTodayDateString();
-
-    setCompletedTrailNodes((prev) => {
-      if (!prev.includes(stageId)) {
-        return [...prev, stageId];
-      }
-      return prev;
-    });
-
-    setStats((prev) => {
-      const nextStars = prev.stars + starsReward;
-      const nextXp = prev.xp + xpReward;
-      const nextLevel = Math.floor(nextXp / 50) + 1;
-      const streakIncrement = !prev.todayCompleted ? 1 : 0;
-      const existingWeekly = prev.weeklyTrainedDates || [];
-      const updatedWeekly = existingWeekly.includes(today) ? existingWeekly : [...existingWeekly, today];
-
-      return {
-        ...prev,
-        stars: nextStars,
-        xp: nextXp,
-        level: Math.max(prev.level, nextLevel),
-        levelTitle: getLevelTitle(Math.max(prev.level, nextLevel)),
-        todayCompleted: true,
-        streakDays: prev.streakDays + streakIncrement,
-        weeklyTrainedDates: updatedWeekly
-      };
-    });
+    setProgress((prev) => concluirEtapa(prev, stageId, starsReward, xpReward));
   };
 
   const handleUnlockSticker = (stickerId: string) => {
-    setUnlockedStickers((prev) => {
-      if (!prev.includes(stickerId)) {
-        return [...prev, stickerId];
+    setProgress((prev) => {
+      if (prev.unlockedStickers.includes(stickerId)) return prev;
+      return { ...prev, unlockedStickers: [...prev.unlockedStickers, stickerId] };
+    });
+  };
+
+  // =========================================================
+  // AÇÕES DE SESSÃO E ACESSIBILIDADE
+  // =========================================================
+  const handleToggleDesktopSidebar = () => {
+    setIsSidebarCollapsed((prev) => {
+      const next = !prev;
+      try {
+        localStorage.setItem('lumilibras_sidebar_collapsed', String(next));
+      } catch {
+        // ignore
       }
-      return prev;
+      return next;
     });
   };
 
@@ -274,13 +215,15 @@ export default function App() {
     setCurrentTab('memory-game');
   };
 
-  const handleToggleDarkMode = () => {
-    setStats((s) => ({ ...s, darkMode: !s.darkMode }));
+  const atualizarStats = (atualizador: (s: typeof stats) => typeof stats) => {
+    setProgress((prev) => ({ ...prev, stats: atualizador(prev.stats) }));
   };
+
+  const handleToggleDarkMode = () => atualizarStats((s) => ({ ...s, darkMode: !s.darkMode }));
 
   const handleLogout = () => {
     logoutUser();
-    signOutFirebase();
+    encerrarSessao();
     setCurrentUser(null);
     setGuestNoticeShown(false);
     setCurrentTab('home');
@@ -288,12 +231,7 @@ export default function App() {
 
   const handleLoginSuccess = (user: UserAccount) => {
     setCurrentUser(user);
-    setStats(user.stats);
-    setCompletedTrailNodes(user.completedTrailNodes || []);
-    setSeenAlphabetLetters(user.seenAlphabetLetters || ['A']);
-    setPracticedWords(user.practicedWords || []);
-    setUnlockedAchievements(user.unlockedAchievements || []);
-    setUnlockedStickers(user.unlockedStickers || []);
+    setProgress(extrairProgressoDoUsuario(user));
     setCurrentTab('home');
   };
 
@@ -301,75 +239,59 @@ export default function App() {
     const guestUser = createInitialUserProgress('Visitante', 'visitante@lumilibras.com', 'geral', 'guest_session');
     setCurrentUser(guestUser);
     setGuestNoticeShown(false);
-    setStats(guestUser.stats);
-    setCompletedTrailNodes([]);
-    setSeenAlphabetLetters(['A']);
-    setPracticedWords([]);
+    setProgress(extrairProgressoDoUsuario(guestUser));
   };
 
   const hasStartedTrail = completedTrailNodes.length > 0;
 
-  // If user is NOT logged in: Show the Landing Screen from the Stitch file
+  // =========================================================
+  // TELA PÚBLICA (sem login): LandingScreen + Auth + Acessibilidade
+  // =========================================================
   if (!currentUser) {
     return (
       <div className={`min-h-screen bg-white dark:bg-[#0A1128] text-slate-800 dark:text-slate-100 ${stats.fontSize === 'large' ? 'text-lg' : 'text-base'}`}>
         <LandingScreen
-          onOpenLogin={() => {
-            setAuthInitialTab('login');
-            setIsAuthModalOpen(true);
-          }}
-          onOpenRegister={() => {
-            setAuthInitialTab('register');
-            setIsAuthModalOpen(true);
-          }}
-          onOpenAccessibility={() => setIsAccessibilityOpen(true)}
+          onOpenLogin={() => abrirAuthModal('login')}
+          onOpenRegister={() => abrirAuthModal('register')}
+          onOpenAccessibility={() => abrirModal('accessibility')}
           onExploreAsGuest={handleExploreAsGuest}
         />
 
-        {/* Auth Modal for Login and Register */}
         <AuthModal
-          isOpen={isAuthModalOpen}
-          initialTab={authInitialTab}
-          onClose={() => setIsAuthModalOpen(false)}
+          isOpen={modals.auth}
+          initialTab={modals.authInitialTab}
+          onClose={() => abrirModal('auth', false)}
           onSuccess={handleLoginSuccess}
         />
 
-        {/* Accessibility Modal available from Landing Screen */}
         <AccessibilityModal
-          isOpen={isAccessibilityOpen}
-          onClose={() => setIsAccessibilityOpen(false)}
+          isOpen={modals.accessibility}
+          onClose={() => abrirModal('accessibility', false)}
           stats={stats}
-          onToggleSound={() =>
-            setStats((s) => ({ ...s, soundEnabled: !s.soundEnabled }))
-          }
-          onToggleHighContrast={() =>
-            setStats((s) => ({ ...s, highContrast: !s.highContrast }))
-          }
+          onToggleSound={() => atualizarStats((s) => ({ ...s, soundEnabled: !s.soundEnabled }))}
+          onToggleHighContrast={() => atualizarStats((s) => ({ ...s, highContrast: !s.highContrast }))}
           onToggleDarkMode={handleToggleDarkMode}
           onToggleFontSize={() =>
-            setStats((s) => ({
-              ...s,
-              fontSize: s.fontSize === 'normal' ? 'large' : 'normal'
-            }))
+            atualizarStats((s) => ({ ...s, fontSize: s.fontSize === 'normal' ? 'large' : 'normal' }))
           }
         />
       </div>
     );
   }
 
-  // If user IS logged in: Show the full interactive application with trail starting clean and progressing
+  // =========================================================
+  // APLICATIVO AUTENTICADO: Sidebar + Header + Tela Ativa + Modais
+  // =========================================================
   return (
     <div className={`min-h-screen bg-[#F8FAFD] dark:bg-[#0A1128] text-slate-800 dark:text-slate-100 flex transition-colors duration-300 ${stats.fontSize === 'large' ? 'text-lg' : 'text-base'}`}>
-      {/* Left Sidebar */}
       <Sidebar
         currentTab={currentTab}
         onSelectTab={(tab) => {
           playSound.stopSpeaking();
-          setCurrentTab(tab);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          navegarParaAba(tab);
         }}
-        onOpenAccessibility={() => setIsAccessibilityOpen(true)}
-        onOpenMediaCredits={() => setIsMediaCreditsOpen(true)}
+        onOpenAccessibility={() => abrirModal('accessibility')}
+        onOpenMediaCredits={() => abrirModal('mediaCredits')}
         soundEnabled={stats.soundEnabled}
         isOpenMobile={mobileMenuOpen}
         onCloseMobile={() => setMobileMenuOpen(false)}
@@ -378,9 +300,7 @@ export default function App() {
         onToggleCollapse={handleToggleDesktopSidebar}
       />
 
-      {/* Main Content Area */}
       <div className="flex-1 min-w-0 flex flex-col min-h-screen">
-        {/* Top Header with accessibility button always visible on top */}
         <Header
           stats={stats}
           currentUser={{
@@ -388,20 +308,17 @@ export default function App() {
             avatar: currentUser.avatar,
             role: currentUser.role
           }}
-          onToggleSound={() =>
-            setStats((s) => ({ ...s, soundEnabled: !s.soundEnabled }))
-          }
+          onToggleSound={() => atualizarStats((s) => ({ ...s, soundEnabled: !s.soundEnabled }))}
           onToggleDarkMode={handleToggleDarkMode}
-          onOpenAccessibility={() => setIsAccessibilityOpen(true)}
-          onOpenProfile={() => setIsProfileOpen(true)}
-          onOpenMediaCredits={() => setIsMediaCreditsOpen(true)}
+          onOpenAccessibility={() => abrirModal('accessibility')}
+          onOpenProfile={() => abrirModal('profile')}
+          onOpenMediaCredits={() => abrirModal('mediaCredits')}
           onOpenMobileMenu={() => setMobileMenuOpen(true)}
           onToggleDesktopSidebar={handleToggleDesktopSidebar}
           isSidebarCollapsed={isSidebarCollapsed}
           onLogout={handleLogout}
         />
 
-        {/* View Router */}
         <main className={`flex-1 px-3 sm:px-8 pt-4 sm:pt-6 w-full pb-24 sm:pb-28 transition-all duration-300 ${
           isSidebarCollapsed ? 'max-w-7xl mx-auto' : 'max-w-7xl mx-auto'
         }`}>
@@ -410,12 +327,9 @@ export default function App() {
               stats={stats}
               completedTrailNodes={completedTrailNodes}
               hasStartedTrail={hasStartedTrail}
-              onNavigateTab={(tab) => {
-                setCurrentTab(tab);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              onOpenHighFive={() => setIsHighFiveOpen(true)}
-              onOpenTipModal={() => setIsTipOpen(true)}
+              onNavigateTab={navegarParaAba}
+              onOpenHighFive={() => abrirModal('highFive')}
+              onOpenTipModal={() => abrirModal('tip')}
               onStartExpressGame={handleStartExpressGame}
             />
           )}
@@ -426,20 +340,13 @@ export default function App() {
               userStats={stats}
               soundEnabled={stats.soundEnabled}
               onCompleteStage={handleCompleteTrailStage}
-              onNavigateToAlphabet={() => {
-                setCurrentTab('alphabet');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              onNavigateToMemoryGame={() => {
-                setCurrentTab('memory-game');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
+              onNavigateToAlphabet={() => navegarParaAba('alphabet')}
+              onNavigateToMemoryGame={() => navegarParaAba('memory-game')}
               shouldShowGuestNotice={currentUser.id === 'guest_session' && !guestNoticeShown}
               onMarkGuestNoticeShown={() => setGuestNoticeShown(true)}
               onOpenRegisterModal={() => {
                 setGuestNoticeShown(true);
-                setAuthInitialTab('register');
-                setIsAuthModalOpen(true);
+                abrirAuthModal('register');
               }}
             />
           )}
@@ -447,25 +354,29 @@ export default function App() {
           {currentTab === 'alphabet' && (
             <AlphabetScreen
               stats={stats}
-              onRewardStars={addStars}
+              onRewardStars={handleRewardStars}
               seenLetters={seenAlphabetLetters}
-              onUpdateSeenLetters={(letters) => setSeenAlphabetLetters(letters)}
+              onUpdateSeenLetters={(letters) =>
+                setProgress((prev) => ({ ...prev, seenAlphabetLetters: letters }))
+              }
             />
           )}
 
           {currentTab === 'daily-signs' && (
             <DailySignsScreen
               stats={stats}
-              onRewardStars={addStars}
+              onRewardStars={handleRewardStars}
               practicedWords={practicedWords}
-              onUpdatePracticedWords={(words) => setPracticedWords(words)}
+              onUpdatePracticedWords={(words) =>
+                setProgress((prev) => ({ ...prev, practicedWords: words }))
+              }
             />
           )}
 
           {currentTab === 'memory-game' && (
             <MemoryGameScreen
               stats={stats}
-              onRewardStars={addStars}
+              onRewardStars={handleMemoryVictory}
               initialMode={memoryGameInitialMode}
             />
           )}
@@ -482,74 +393,62 @@ export default function App() {
 
           {currentTab === 'credits-curiosities' && (
             <CreditsCuriositiesScreen
-              onOpenAccessibility={() => setIsAccessibilityOpen(true)}
+              onOpenAccessibility={() => abrirModal('accessibility')}
             />
           )}
         </main>
 
-        {/* Floating Companion Sticky Bar at Bottom */}
         <BottomCompanionBar
           hasStartedTrail={hasStartedTrail}
-          onOpenTip={() => setIsTipOpen(true)}
-          onContinueTrail={() => {
-            setCurrentTab('trail');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
+          onOpenTip={() => abrirModal('tip')}
+          onContinueTrail={() => navegarParaAba('trail')}
           soundEnabled={stats.soundEnabled}
         />
       </div>
 
-      {/* Interactive Modals */}
       <HighFiveModal
-        isOpen={isHighFiveOpen}
-        onClose={() => setIsHighFiveOpen(false)}
+        isOpen={modals.highFive}
+        onClose={() => abrirModal('highFive', false)}
         onRewardStars={handleHighFiveReward}
         soundEnabled={stats.soundEnabled}
         alreadyClaimedToday={stats.lastHighFiveDate === getTodayDateString()}
       />
 
       <LumiTipModal
-        isOpen={isTipOpen}
-        onClose={() => setIsTipOpen(false)}
+        isOpen={modals.tip}
+        onClose={() => abrirModal('tip', false)}
         soundEnabled={stats.soundEnabled}
       />
 
       <AccessibilityModal
-        isOpen={isAccessibilityOpen}
-        onClose={() => setIsAccessibilityOpen(false)}
+        isOpen={modals.accessibility}
+        onClose={() => abrirModal('accessibility', false)}
         stats={stats}
-        onToggleSound={() =>
-          setStats((s) => ({ ...s, soundEnabled: !s.soundEnabled }))
-        }
-        onToggleHighContrast={() =>
-          setStats((s) => ({ ...s, highContrast: !s.highContrast }))
-        }
+        onToggleSound={() => atualizarStats((s) => ({ ...s, soundEnabled: !s.soundEnabled }))}
+        onToggleHighContrast={() => atualizarStats((s) => ({ ...s, highContrast: !s.highContrast }))}
         onToggleDarkMode={handleToggleDarkMode}
         onToggleFontSize={() =>
-          setStats((s) => ({
-            ...s,
-            fontSize: s.fontSize === 'normal' ? 'large' : 'normal'
-          }))
+          atualizarStats((s) => ({ ...s, fontSize: s.fontSize === 'normal' ? 'large' : 'normal' }))
         }
       />
 
       <ProfileModal
-        isOpen={isProfileOpen}
-        onClose={() => setIsProfileOpen(false)}
+        isOpen={modals.profile}
+        onClose={() => abrirModal('profile', false)}
         stats={stats}
         currentUser={currentUser}
         onLogout={handleLogout}
       />
 
       <MediaCreditsModal
-        isOpen={isMediaCreditsOpen}
-        onClose={() => setIsMediaCreditsOpen(false)}
+        isOpen={modals.mediaCredits}
+        onClose={() => abrirModal('mediaCredits', false)}
       />
 
       <AuthModal
-        isOpen={isAuthModalOpen}
-        initialTab={authInitialTab}
-        onClose={() => setIsAuthModalOpen(false)}
+        isOpen={modals.auth}
+        initialTab={modals.authInitialTab}
+        onClose={() => abrirModal('auth', false)}
         onSuccess={handleLoginSuccess}
       />
     </div>

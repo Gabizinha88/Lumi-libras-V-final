@@ -1,6 +1,7 @@
 import React from 'react';
 import confetti from 'canvas-confetti';
 import { ACHIEVEMENTS_DATA } from '../../data/librasData';
+import { avaliarConquistas } from '../../logic/gamification';
 import { UserStats } from '../../types';
 import { Award, Star, Flame, Gift, CheckCircle2, Lock } from 'lucide-react';
 import { playSound } from '../../utils/sound';
@@ -43,27 +44,13 @@ export const AchievementsScreen: React.FC<AchievementsScreenProps> = ({
     }
   };
 
-  // Evaluate dynamic unlocks for achievements
-  const evaluatedAchievements = ACHIEVEMENTS_DATA.map((item) => {
-    let isUnlocked = unlockedAchievements.includes(item.id);
-
-    if (item.id === 'first-sign') {
-      isUnlocked = isUnlocked || completedTrailNodes.length > 0;
-    } else if (item.id === 'alphabet-explorer') {
-      isUnlocked = isUnlocked || (completedTrailNodes.includes('node-1') && completedTrailNodes.includes('node-2'));
-    } else if (item.id === 'five-day-streak') {
-      isUnlocked = isUnlocked || stats.streakDays >= 5;
-    } else if (item.id === 'friendly-hands') {
-      isUnlocked = isUnlocked || (completedTrailNodes.includes('node-3') && completedTrailNodes.includes('node-4'));
-    } else if (item.id === 'lumi-best-friend') {
-      isUnlocked = isUnlocked || completedTrailNodes.includes('node-5');
-    }
-
-    return {
-      ...item,
-      unlocked: isUnlocked
-    };
-  });
+  // Avalia quais conquistas estão liberadas a partir da regra central em src/logic/gamification.ts
+  const evaluatedAchievements = avaliarConquistas(
+    ACHIEVEMENTS_DATA,
+    unlockedAchievements,
+    completedTrailNodes,
+    stats
+  );
 
   return (
     <div className="space-y-8 text-left pb-10 transition-colors">
